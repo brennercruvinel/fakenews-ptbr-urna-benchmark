@@ -1,3 +1,5 @@
+![urna: offline-first vector database, rust and python](https://raw.githubusercontent.com/hoffresearch/urna/main/assets/images/urna-hoff-research-db-thumb.png)
+
 # fakenews-ptbr-urna-benchmark
 
 Seven public Brazilian Portuguese fake-news datasets, normalized into one deduplicated corpus and packed into single `.urna` files, with the queries and the relevance judgments that say whether search over them works.
