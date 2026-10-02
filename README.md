@@ -97,10 +97,6 @@ The corpus and the chunk map as Parquet, and the `.urna` files, will be on Huggi
 
 The Hugging Face dataset stays private until all four are done.
 
-## Citation
-
-`CITATION.cff` cites Urna, the one reference for this benchmark and its corpus. Cite the upstream datasets when you use their rows.
-
 ## License
 
 MIT (`LICENSE`) covers the code, the recipes and the results written in this repo. It does not cover the corpus text, nor queries taken from upstream sources: those keep the terms of their source, listed in `docs/sources.md`, and a built `.urna` carries the most restrictive of them.
