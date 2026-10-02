@@ -20,6 +20,19 @@ What the Urna repository holds that depends on the fake-news corpus, as of Urna 
 
 This benchmark replaces both scripts: `benchmark/tools/fetch_sources.py` and `prepare.py` take the loaders' place with pinned revisions and the new schema, and `build.py` builds with the published wheel instead of a checkout.
 
+## Why the file cannot be rebuilt
+
+The loader read files that are gone upstream:
+
+- `vzani/corpus-fake-br` and `vzani/corpus-faketrue-br` now carry `corpus_train_df.parquet` and `corpus_test_df.parquet`; the `train.csv` and `test.csv` the loader opened are not there.
+- FakeRecogna ships `dataset/FakeRecogna.xlsx`; the `FakeRecogna.csv` the loader opened is not there.
+- `opit-research/factck-br` no longer exists. The original is `jghm-f/FACTCK.BR`, with the same `FACTCKBR.tsv`.
+
+So `corpus_next.v1.urna` stays what it is: a frozen file, identified by its `file_hash`. Two things in it are known, and neither changes what the gate measures (rank stability under quantization):
+
+- The 7,200 Fake.br articles are in it twice. The loader read both the vzani copy and Fake.br's `preprocessed/pre-processed.csv`, whose text has stopwords, accents and diacritics removed, so the two never deduplicated. That accounts for most of the gap between its 30,725 chunks and the 23,335 documents here.
+- The FACTCK.BR labels came from the numeric rating (`<= 2` fake, `3` dropped, `>= 4` true). The scale differs per agency, and 469 claims rated "Falso" carry a 4, so they are labeled true. Experiment 01 has the table.
+
 ## The gate
 
 | Path | Role |

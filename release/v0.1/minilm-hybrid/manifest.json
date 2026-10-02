@@ -1,0 +1,115 @@
+{
+ "inspect": {
+  "blobs": null,
+  "content_hash": "sha256:95208653fceea51d51e9f6b231ae3851873e77b87332fed4e64c30e850ce5ecb",
+  "embedding_dim": 384,
+  "file_hash": "sha256:8e8889984e164aad94455a8dd24ab42704b4386b6ab771edde9f929e2cf127c5",
+  "file_size": 54375095,
+  "format_version": 1,
+  "magic": "URNA",
+  "manifest": {
+   "capabilities": {
+    "supports_ann": true,
+    "supports_bm25": true,
+    "supports_citations": true,
+    "supports_exact": true,
+    "supports_reproducible_build": true
+   },
+   "chunker_version": "fakenews-ptbr/0.1",
+   "created": "1970-01-01T00:00:00Z",
+   "description": "Seven pt-br fake-news datasets, deduplicated by text; one chunk per document.",
+   "dtype": "float32",
+   "embedding_dim": 384,
+   "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+   "format_version": 1,
+   "index_type": "hnsw",
+   "license": "mixed (per-source, see docs/sources.md)",
+   "metric": "ip",
+   "model_hash": "sha256:97a500de1ad2dc9ffb41fbe3dec27d4fd26ddaa13143aa50f905d3d1f6eff0af",
+   "n_chunks": 23335,
+   "normalize": "l2",
+   "rerank_policy": "exact",
+   "schema_version": 1,
+   "score_type": "cosine",
+   "title": "fakenews-ptbr minilm hybrid",
+   "version": "0.1.0"
+  },
+  "n_chunks": 23335,
+  "n_embeddings": 23335,
+  "schema_version": 1,
+  "sections": [
+   {
+    "checksum": "f72ac270d8232996",
+    "encoding": 4,
+    "name": "chunk_ids",
+    "offset": 1216,
+    "section_id": 1,
+    "size": 746725
+   },
+   {
+    "checksum": "2e044d65381bb155",
+    "encoding": 1,
+    "name": "chunks_canonical",
+    "offset": 747968,
+    "section_id": 2,
+    "size": 10806981
+   },
+   {
+    "checksum": "c76d96d502d6fe85",
+    "encoding": 1,
+    "name": "chunks_original_spans",
+    "offset": 11555008,
+    "section_id": 3,
+    "size": 874354
+   },
+   {
+    "checksum": "14be76db79682c57",
+    "encoding": 0,
+    "name": "embeddings",
+    "offset": 12429376,
+    "section_id": 4,
+    "size": 35842560
+   },
+   {
+    "checksum": "63977385f7f0962a",
+    "encoding": 1,
+    "name": "provenance",
+    "offset": 48271936,
+    "section_id": 5,
+    "size": 122
+   },
+   {
+    "checksum": "3dfaffaf63da0cd0",
+    "encoding": 1,
+    "name": "search_contract",
+    "offset": 48272064,
+    "section_id": 6,
+    "size": 95
+   },
+   {
+    "checksum": "432aea1ebc607755",
+    "encoding": 0,
+    "name": "hnsw_index",
+    "offset": 48272192,
+    "section_id": 7,
+    "size": 1280100
+   },
+   {
+    "checksum": "67e20c74ef66f747",
+    "encoding": 1,
+    "name": "bm25_index",
+    "offset": 49552320,
+    "section_id": 8,
+    "size": 4822735
+   }
+  ],
+  "simd_backend": "neon",
+  "spaces": null,
+  "version_major": 1,
+  "version_minor": 0
+ },
+ "timings_s": {
+  "build": 104.1,
+  "embed": 0.0
+ }
+}

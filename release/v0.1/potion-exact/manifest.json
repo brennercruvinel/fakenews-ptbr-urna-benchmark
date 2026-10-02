@@ -1,0 +1,99 @@
+{
+ "inspect": {
+  "blobs": null,
+  "content_hash": "sha256:05a3b326a17afb52d973b6608eb8f579a290d07466ad05f74dfc7835afa68183",
+  "embedding_dim": 256,
+  "file_hash": "sha256:ab5bf432be08f9ac9d02e2b4d50c262811cc0aaaec5e1ea39aad00107d66e8aa",
+  "file_size": 72642326,
+  "format_version": 1,
+  "magic": "URNA",
+  "manifest": {
+   "capabilities": {
+    "supports_ann": false,
+    "supports_bm25": false,
+    "supports_citations": true,
+    "supports_exact": true,
+    "supports_reproducible_build": true
+   },
+   "chunker_version": "fakenews-ptbr/0.1",
+   "created": "1970-01-01T00:00:00Z",
+   "description": "Seven pt-br fake-news datasets, deduplicated by text; one chunk per document.",
+   "dtype": "float32",
+   "embedding_dim": 256,
+   "embedding_model": "minishlab/potion-base-8M/v1",
+   "format_version": 1,
+   "index_type": "exact",
+   "license": "mixed (per-source, see docs/sources.md)",
+   "metric": "ip",
+   "model_hash": "sha256:8f2eb91a754b4da59cdd8223d0ba196185fed1bb6f092fd2be0ff02b893b1c98",
+   "n_chunks": 23335,
+   "normalize": "l2",
+   "rerank_policy": "none",
+   "schema_version": 1,
+   "score_type": "cosine",
+   "title": "fakenews-ptbr potion exact",
+   "version": "0.1.0"
+  },
+  "n_chunks": 23335,
+  "n_embeddings": 23335,
+  "schema_version": 1,
+  "sections": [
+   {
+    "checksum": "c55db1cf3652ee63",
+    "encoding": 0,
+    "name": "chunk_ids",
+    "offset": 1088,
+    "section_id": 1,
+    "size": 1750137
+   },
+   {
+    "checksum": "151a0051a775000c",
+    "encoding": 0,
+    "name": "chunks_canonical",
+    "offset": 1751232,
+    "section_id": 2,
+    "size": 44568825
+   },
+   {
+    "checksum": "6d129bea746833bb",
+    "encoding": 0,
+    "name": "chunks_original_spans",
+    "offset": 46320064,
+    "section_id": 3,
+    "size": 2426852
+   },
+   {
+    "checksum": "54137d724f2bf431",
+    "encoding": 0,
+    "name": "embeddings",
+    "offset": 48746944,
+    "section_id": 4,
+    "size": 23895040
+   },
+   {
+    "checksum": "83dc9fad68b1a909",
+    "encoding": 0,
+    "name": "provenance",
+    "offset": 72641984,
+    "section_id": 5,
+    "size": 135
+   },
+   {
+    "checksum": "e89c51a6ba43ebb6",
+    "encoding": 0,
+    "name": "search_contract",
+    "offset": 72642176,
+    "section_id": 6,
+    "size": 110
+   }
+  ],
+  "simd_backend": "neon",
+  "spaces": null,
+  "version_major": 1,
+  "version_minor": 0
+ },
+ "timings_s": {
+  "build": 0.3,
+  "embed": 0.0
+ }
+}

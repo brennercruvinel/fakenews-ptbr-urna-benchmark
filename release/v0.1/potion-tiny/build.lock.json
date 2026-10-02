@@ -1,0 +1,75 @@
+{
+ "build": {
+  "chunker_version": "fakenews-ptbr/0.1",
+  "kwargs": {
+   "preset": "tiny"
+  },
+  "preset": "tiny",
+  "reproducible": true,
+  "source_uri": "fakenews-ptbr://doc/<doc_id hex>"
+ },
+ "corpus": {
+  "corpus_hash": "sha256:12c173b9164b38d9956dbf4689dd3a93f1d9b876b95cc33d9e9b5a38ba76921e",
+  "n_docs": 23335,
+  "source_tree_hashes": {
+   "Fake.br-Corpus": "sha256:f06c33d1b81ce48bc28b4b12825f24b4ea02c4e27d1e9c4098d578326e948b8f",
+   "FakeBr-hf": "sha256:ad17e27bedf0b9b3272b7952701eccd125fa1c68fa654271622fb930bbc95719",
+   "FakeRecogna": "sha256:6eef7f883ff7b2063097c2aa0c7456147ea8952084ceac2d9c68c107223087aa",
+   "FakeTrue.Br": "sha256:d3716e457632b43231d98bd9428eb9f55a8ce8db57a18af35c55b40234b38f8d",
+   "FakeTrue.Br-hf": "sha256:aa245eef07b3af670078817f990999b0a63ebfc7a6697a166acb546ee3d0852d",
+   "bilstm-combined": "sha256:217646a01d03141298bd263fa55b58ab8c02121887980fb538b8e61b37f8ddc2",
+   "factck-br": "sha256:b7911cdbb7e266c3a5b0b60b29dce70f09ab04ebf8cc1bac88fac52b504f497a"
+  }
+ },
+ "environment": {
+  "device": "cpu",
+  "packages": {
+   "huggingface_hub": "1.33.0",
+   "numpy": "2.5.3",
+   "pandas": "3.0.6",
+   "pyarrow": "25.0.1",
+   "sentence-transformers": "6.1.0",
+   "tokenizers": "0.23.2",
+   "torch": "2.14.1",
+   "transformers": "5.18.0",
+   "urna": "0.5.1"
+  },
+  "platform": "Darwin arm64",
+  "python": "3.13.15"
+ },
+ "model": {
+  "dim": 256,
+  "fingerprint": {
+   "add_special_tokens": false,
+   "dtype": "float32-stable",
+   "embedder": "minishlab/potion-base-8M",
+   "embedding_dim": 256,
+   "files_hash": "sha256:fe5770db86d9613d958e73994eceaca79a0fa7b905d87181d33a0d4fd0e2b9bf",
+   "normalize": "l2",
+   "pooling": "mean",
+   "tokenizer": "bert-wordpiece-lower",
+   "tokenizer_hash": "sha256:e67e803f624fb4d67dea1c730d06e1067e1b14d830e2c2202569e3ef0f70bb50",
+   "version": "1"
+  },
+  "id": "minishlab/potion-base-8M",
+  "kind": "potion",
+  "model_hash": "sha256:8f2eb91a754b4da59cdd8223d0ba196185fed1bb6f092fd2be0ff02b893b1c98",
+  "name": "potion",
+  "revision": "urna==0.5.1",
+  "snapshot_files": {
+   "README.md": "227cd8b30d6c216d7b09fdce2d78792ccb11ae9ac6334f2ab7f6950d0018867b",
+   "config.json": "2a6ac0e9aaa356a68a5688070db78fc3a464fefe85d2f06a1905ce3718687553",
+   "model.safetensors": "f65d0f325faadc1e121c319e2faa41170d3fa07d8c89abd48ca5358d9a223de2",
+   "modules.json": "a68dcbed0429dcdd5bfdca92b0b03cc30d09122c0a3fcf4758787d4b244e45b2",
+   "special_tokens_map.json": "a9e8fb6f99fb0b8803f0e6942fdf4d95d6645204620b67dc3310a1024bcbac59",
+   "tokenizer.json": "e67e803f624fb4d67dea1c730d06e1067e1b14d830e2c2202569e3ef0f70bb50",
+   "tokenizer_config.json": "6725995e3ab3039857ff5bd99178a7cdf42863abb04449e7bb31feb1f55fe567"
+  }
+ },
+ "output": {
+  "bytes": 19604741,
+  "content_hash": "sha256:bd2813c84259694a834e4bbe97d3c6d59c0dc0bae1b4f80d0af07bbe61609b77",
+  "file_hash": "sha256:3c57b09a1bfa2f6039bfd48cd6b3494307982c00d95d82a8f4a2abe86adc7a22",
+  "n_chunks": 23335
+ }
+}

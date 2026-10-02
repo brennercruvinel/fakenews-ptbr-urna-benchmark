@@ -74,7 +74,7 @@ def main() -> int:
         dest.mkdir(parents=True, exist_ok=True)
         for f in sorted(b.iterdir()):
             if f.is_file():
-                shutil.copy2(f, dest / f.name)
+                env.place(f, dest / f.name)
     (out / "results").mkdir(exist_ok=True)
     for rj in sorted(env.EXPERIMENTS.glob("*/results.json")):
         shutil.copy2(rj, out / "results" / f"{rj.parent.name}.json")

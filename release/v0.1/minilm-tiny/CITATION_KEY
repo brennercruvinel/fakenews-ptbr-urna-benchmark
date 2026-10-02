@@ -1,0 +1,7 @@
+content_hash = sha256:11666ba614ebbc85b41270525edabeb5e7ea77e9420b6cea92c8ce5732e63286
+file_hash = sha256:8de85b87bd2bada09be955784f976666c0b107e8ef4093fa228247151c81bf46
+chunker_version = fakenews-ptbr/0.1
+title = fakenews-ptbr minilm tiny
+n_chunks = 23335
+embedding_model = sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+read_with = urna 0.5.1 inspect --json

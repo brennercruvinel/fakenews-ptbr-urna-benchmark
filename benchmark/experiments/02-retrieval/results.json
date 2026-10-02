@@ -1,0 +1,365 @@
+{
+ "experiment": "02-retrieval",
+ "provenance": {
+  "date": "2026-10-02",
+  "notes": "silver qrels; every number is a lower bound shared by all rows (docs/methodology.md)",
+  "source": "benchmark/tools/evaluate.py runs, scored against benchmark/queries/qrels.tsv",
+  "status": "measured"
+ },
+ "tables": [
+  {
+   "columns": [
+    {
+     "key": "model",
+     "label": "model"
+    },
+    {
+     "key": "preset",
+     "label": "preset"
+    },
+    {
+     "fmt": "mb",
+     "key": "bytes",
+     "label": "file MB"
+    },
+    {
+     "fmt": "f3",
+     "key": "ndcg@10",
+     "label": "ndcg@10"
+    },
+    {
+     "fmt": "f3",
+     "key": "recall@10",
+     "label": "recall@10"
+    },
+    {
+     "fmt": "f3",
+     "key": "recall@100",
+     "label": "recall@100"
+    },
+    {
+     "fmt": "f3",
+     "key": "hit@1",
+     "label": "hit@1"
+    },
+    {
+     "fmt": "f2",
+     "key": "ms",
+     "label": "search ms/query"
+    }
+   ],
+   "notes": [
+    "nDCG@10 is graded (2 for the document the headline was written for, 1 for its FakeTrue.Br pair); recall counts any judged document; hit@1 asks for the grade-2 document at rank 1.",
+    "Search time is the python call after the query vector exists, on the build machine; it leaves out embedding the query."
+   ],
+   "rows": [
+    {
+     "bytes": 84589910,
+     "hit@1": 0.2807,
+     "model": "minilm",
+     "ms": 2.21,
+     "ndcg@10": 0.5032,
+     "preset": "exact",
+     "recall@10": 0.6595,
+     "recall@100": 0.8285
+    },
+    {
+     "bytes": 22763724,
+     "hit@1": 0.281,
+     "model": "minilm",
+     "ms": 1.52,
+     "ndcg@10": 0.5029,
+     "preset": "tiny",
+     "recall@10": 0.6585,
+     "recall@100": 0.8279
+    },
+    {
+     "bytes": 54375095,
+     "hit@1": 0.2807,
+     "model": "minilm",
+     "ms": 2.67,
+     "ndcg@10": 0.5032,
+     "preset": "hybrid",
+     "recall@10": 0.6595,
+     "recall@100": 0.8285
+    },
+    {
+     "bytes": 120432470,
+     "hit@1": 0.2949,
+     "model": "mpnet",
+     "ms": 6.28,
+     "ndcg@10": 0.5283,
+     "preset": "exact",
+     "recall@10": 0.6901,
+     "recall@100": 0.8501
+    },
+    {
+     "bytes": 31724269,
+     "hit@1": 0.2945,
+     "model": "mpnet",
+     "ms": 2.56,
+     "ndcg@10": 0.5281,
+     "preset": "tiny",
+     "recall@10": 0.6899,
+     "recall@100": 0.8496
+    },
+    {
+     "bytes": 90217591,
+     "hit@1": 0.2949,
+     "model": "mpnet",
+     "ms": 3.66,
+     "ndcg@10": 0.5283,
+     "preset": "hybrid",
+     "recall@10": 0.6901,
+     "recall@100": 0.8503
+    },
+    {
+     "bytes": 72642326,
+     "hit@1": 0.1976,
+     "model": "potion",
+     "ms": 1.58,
+     "ndcg@10": 0.3258,
+     "preset": "exact",
+     "recall@10": 0.3994,
+     "recall@100": 0.5686
+    },
+    {
+     "bytes": 19604741,
+     "hit@1": 0.1915,
+     "model": "potion",
+     "ms": 0.65,
+     "ndcg@10": 0.3126,
+     "preset": "tiny",
+     "recall@10": 0.3812,
+     "recall@100": 0.5335
+    },
+    {
+     "bytes": 42255479,
+     "hit@1": 0.1976,
+     "model": "potion",
+     "ms": 2.13,
+     "ndcg@10": 0.3265,
+     "preset": "hybrid",
+     "recall@10": 0.4007,
+     "recall@100": 0.5723
+    }
+   ],
+   "title": "all 2601 queries"
+  },
+  {
+   "columns": [
+    {
+     "key": "model",
+     "label": "model"
+    },
+    {
+     "key": "preset",
+     "label": "preset"
+    },
+    {
+     "fmt": "f3",
+     "key": "ndcg@10",
+     "label": "ndcg@10"
+    },
+    {
+     "fmt": "f3",
+     "key": "recall@10",
+     "label": "recall@10"
+    },
+    {
+     "fmt": "f3",
+     "key": "recall@100",
+     "label": "recall@100"
+    },
+    {
+     "fmt": "f3",
+     "key": "hit@1",
+     "label": "hit@1"
+    }
+   ],
+   "rows": [
+    {
+     "hit@1": 0.2442,
+     "model": "minilm",
+     "ndcg@10": 0.5146,
+     "preset": "exact",
+     "recall@10": 0.6833,
+     "recall@100": 0.8708
+    },
+    {
+     "hit@1": 0.2454,
+     "model": "minilm",
+     "ndcg@10": 0.5145,
+     "preset": "tiny",
+     "recall@10": 0.6824,
+     "recall@100": 0.8705
+    },
+    {
+     "hit@1": 0.2442,
+     "model": "minilm",
+     "ndcg@10": 0.5146,
+     "preset": "hybrid",
+     "recall@10": 0.6833,
+     "recall@100": 0.8708
+    },
+    {
+     "hit@1": 0.2546,
+     "model": "mpnet",
+     "ndcg@10": 0.5322,
+     "preset": "exact",
+     "recall@10": 0.7014,
+     "recall@100": 0.8804
+    },
+    {
+     "hit@1": 0.2541,
+     "model": "mpnet",
+     "ndcg@10": 0.5322,
+     "preset": "tiny",
+     "recall@10": 0.7017,
+     "recall@100": 0.8801
+    },
+    {
+     "hit@1": 0.2546,
+     "model": "mpnet",
+     "ndcg@10": 0.5322,
+     "preset": "hybrid",
+     "recall@10": 0.7014,
+     "recall@100": 0.8807
+    },
+    {
+     "hit@1": 0.1626,
+     "model": "potion",
+     "ndcg@10": 0.3181,
+     "preset": "exact",
+     "recall@10": 0.3903,
+     "recall@100": 0.5956
+    },
+    {
+     "hit@1": 0.1545,
+     "model": "potion",
+     "ndcg@10": 0.3004,
+     "preset": "tiny",
+     "recall@10": 0.367,
+     "recall@100": 0.5523
+    },
+    {
+     "hit@1": 0.1626,
+     "model": "potion",
+     "ndcg@10": 0.3188,
+     "preset": "hybrid",
+     "recall@10": 0.3917,
+     "recall@100": 0.6004
+    }
+   ],
+   "title": "FakeTrue.Br headlines (1728 queries)"
+  },
+  {
+   "columns": [
+    {
+     "key": "model",
+     "label": "model"
+    },
+    {
+     "key": "preset",
+     "label": "preset"
+    },
+    {
+     "fmt": "f3",
+     "key": "ndcg@10",
+     "label": "ndcg@10"
+    },
+    {
+     "fmt": "f3",
+     "key": "recall@10",
+     "label": "recall@10"
+    },
+    {
+     "fmt": "f3",
+     "key": "recall@100",
+     "label": "recall@100"
+    },
+    {
+     "fmt": "f3",
+     "key": "hit@1",
+     "label": "hit@1"
+    }
+   ],
+   "rows": [
+    {
+     "hit@1": 0.3528,
+     "model": "minilm",
+     "ndcg@10": 0.4806,
+     "preset": "exact",
+     "recall@10": 0.6124,
+     "recall@100": 0.7449
+    },
+    {
+     "hit@1": 0.3517,
+     "model": "minilm",
+     "ndcg@10": 0.48,
+     "preset": "tiny",
+     "recall@10": 0.6113,
+     "recall@100": 0.7438
+    },
+    {
+     "hit@1": 0.3528,
+     "model": "minilm",
+     "ndcg@10": 0.4806,
+     "preset": "hybrid",
+     "recall@10": 0.6124,
+     "recall@100": 0.7449
+    },
+    {
+     "hit@1": 0.3746,
+     "model": "mpnet",
+     "ndcg@10": 0.5206,
+     "preset": "exact",
+     "recall@10": 0.6677,
+     "recall@100": 0.7902
+    },
+    {
+     "hit@1": 0.3746,
+     "model": "mpnet",
+     "ndcg@10": 0.5199,
+     "preset": "tiny",
+     "recall@10": 0.6666,
+     "recall@100": 0.7891
+    },
+    {
+     "hit@1": 0.3746,
+     "model": "mpnet",
+     "ndcg@10": 0.5206,
+     "preset": "hybrid",
+     "recall@10": 0.6677,
+     "recall@100": 0.7902
+    },
+    {
+     "hit@1": 0.2669,
+     "model": "potion",
+     "ndcg@10": 0.3412,
+     "preset": "exact",
+     "recall@10": 0.4173,
+     "recall@100": 0.5153
+    },
+    {
+     "hit@1": 0.2646,
+     "model": "potion",
+     "ndcg@10": 0.3366,
+     "preset": "tiny",
+     "recall@10": 0.4093,
+     "recall@100": 0.4962
+    },
+    {
+     "hit@1": 0.2669,
+     "model": "potion",
+     "ndcg@10": 0.3418,
+     "preset": "hybrid",
+     "recall@10": 0.4185,
+     "recall@100": 0.5168
+    }
+   ],
+   "title": "FACTCK.BR titles (873 queries)"
+  }
+ ],
+ "title": "retrieval quality per model and preset"
+}

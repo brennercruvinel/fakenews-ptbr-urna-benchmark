@@ -1,0 +1,77 @@
+{
+ "build": {
+  "chunker_version": "fakenews-ptbr/0.1",
+  "kwargs": {
+   "preset": "tiny"
+  },
+  "preset": "tiny",
+  "reproducible": true,
+  "source_uri": "fakenews-ptbr://doc/<doc_id hex>"
+ },
+ "corpus": {
+  "corpus_hash": "sha256:12c173b9164b38d9956dbf4689dd3a93f1d9b876b95cc33d9e9b5a38ba76921e",
+  "n_docs": 23335,
+  "source_tree_hashes": {
+   "Fake.br-Corpus": "sha256:f06c33d1b81ce48bc28b4b12825f24b4ea02c4e27d1e9c4098d578326e948b8f",
+   "FakeBr-hf": "sha256:ad17e27bedf0b9b3272b7952701eccd125fa1c68fa654271622fb930bbc95719",
+   "FakeRecogna": "sha256:6eef7f883ff7b2063097c2aa0c7456147ea8952084ceac2d9c68c107223087aa",
+   "FakeTrue.Br": "sha256:d3716e457632b43231d98bd9428eb9f55a8ce8db57a18af35c55b40234b38f8d",
+   "FakeTrue.Br-hf": "sha256:aa245eef07b3af670078817f990999b0a63ebfc7a6697a166acb546ee3d0852d",
+   "bilstm-combined": "sha256:217646a01d03141298bd263fa55b58ab8c02121887980fb538b8e61b37f8ddc2",
+   "factck-br": "sha256:b7911cdbb7e266c3a5b0b60b29dce70f09ab04ebf8cc1bac88fac52b504f497a"
+  }
+ },
+ "environment": {
+  "device": "cpu",
+  "packages": {
+   "huggingface_hub": "1.33.0",
+   "numpy": "2.5.3",
+   "pandas": "3.0.6",
+   "pyarrow": "25.0.1",
+   "sentence-transformers": "6.1.0",
+   "tokenizers": "0.23.2",
+   "torch": "2.14.1",
+   "transformers": "5.18.0",
+   "urna": "0.5.1"
+  },
+  "platform": "Darwin arm64",
+  "python": "3.13.15"
+ },
+ "model": {
+  "dim": 384,
+  "fingerprint": {
+   "embedding_dim": 384,
+   "files_hash": "sha256:cd25013fa2494f7b4d608dd25fc7b9b8da868f4bb30ffc9d334c91c49327f10e",
+   "model_id": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+   "normalize_embeddings": true,
+   "pooling_config_hash": "sha256:4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+   "tokenizer_hash": "sha256:2c3387be76557bd40970cec13153b3bbf80407865484b209e655e5e4729076b8"
+  },
+  "id": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "kind": "sentence-transformers",
+  "model_hash": "sha256:97a500de1ad2dc9ffb41fbe3dec27d4fd26ddaa13143aa50f905d3d1f6eff0af",
+  "name": "minilm",
+  "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+  "snapshot_files": {
+   ".gitattributes": "fd3e5d862331ec272410eb6312742550c3149899ee61827169b78fd0d5889f2e",
+   "1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+   "README.md": "1e98ea05b0de579fcaad3d625b62ea55647142ed674d5f5ebf1440e4bbbb6f23",
+   "config.json": "6300193cb75e01cf80c96decef7187dfb33094d97cc1490b7ead6ff134476e4e",
+   "config_sentence_transformers.json": "b8c64b5cece00d8424b4896ea75b512b6008576088497609dfeb6bd63e6d36b8",
+   "model.safetensors": "eaa086f0ffee582aeb45b36e34cdd1fe2d6de2bef61f8a559a1bbc9bd955917b",
+   "modules.json": "8f4b264b80206c830bebbdcae377e137925650a433b689343a63bdc9b3145460",
+   "sentence_bert_config.json": "70f4448f31320443fe3557cacea5abf2dcc4915dda8c80646bec9f3bb0aa5a1f",
+   "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+   "special_tokens_map.json": "378eb3bf733eb16e65792d7e3fda5b8a4631387ca04d2015199c4d4f22ae554d",
+   "tokenizer.json": "2c3387be76557bd40970cec13153b3bbf80407865484b209e655e5e4729076b8",
+   "tokenizer_config.json": "5036ea374ffedd706e3bef33e2e0d6953cb868ef8a490e76e32ba0faa37a6b9b",
+   "unigram.json": "71b44701d7efd054205115acfa6ef126c5d2f84bd3affe0c59e48163674d19a6"
+  }
+ },
+ "output": {
+  "bytes": 22763724,
+  "content_hash": "sha256:11666ba614ebbc85b41270525edabeb5e7ea77e9420b6cea92c8ce5732e63286",
+  "file_hash": "sha256:8de85b87bd2bada09be955784f976666c0b107e8ef4093fa228247151c81bf46",
+  "n_chunks": 23335
+ }
+}

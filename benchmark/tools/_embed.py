@@ -34,6 +34,10 @@ def model_entry(name: str) -> dict:
     return found[name]
 
 
+# weights in other runtimes and formats; sentence-transformers loads model.safetensors
+SKIP = ["onnx/*", "openvino/*", "*.onnx", "*.h5", "*.msgpack", "*.ot", "pytorch_model.bin", "tf_model*", "flax_model*"]
+
+
 def snapshot_dir(m: dict) -> Path:
     return env.data_root() / "models" / f"{m['name']}-{m['revision'][:12]}"
 
@@ -42,8 +46,8 @@ def fetch_snapshot(m: dict) -> Path:
     from huggingface_hub import snapshot_download
 
     dest = snapshot_dir(m)
-    if not (dest / "modules.json").is_file():
-        snapshot_download(m["id"], revision=m["revision"], local_dir=dest)
+    # idempotent: files already on disk at this revision are not fetched again
+    snapshot_download(m["id"], revision=m["revision"], local_dir=dest, ignore_patterns=SKIP)
     return dest
 
 

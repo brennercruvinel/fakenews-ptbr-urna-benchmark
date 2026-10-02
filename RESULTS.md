@@ -68,3 +68,56 @@ verdict: 23,335 documents. Fake.br enters once instead of twice (corpus_next.v1 
 - 469 claims get opposite labels from the two rules, before the length filter. The numeric rule (<=2 fake, 3 dropped, >=4 true) is the one Urna's corpus_next.v1 loader used; this corpus uses the text rating.
 
 provenance: measured; source: benchmark/tools/overlap_report.py over prepare.py output; date: 2026-10-02; notes: sources at the revisions and tree hashes pinned in sources/sources.toml
+
+## 02 retrieval: retrieval quality per model and preset
+
+hypothesis: a multilingual sentence-transformers model finds the judged documents far more often than potion, an English static table, and the compressed presets of a model lose little against its exact preset.
+method: the 2,601 queries of benchmark/queries, embedded by each build's own model, searched the way the urna cli routes them (exact, hnsw, or hybrid with the query text, beam max(100, k)); chunk hits become a document ranking (first hit per document), scored as a TREC run against the silver qrels; ir_measures reproduces the numbers.
+verdict: mpnet leads (nDCG@10 0.528), minilm is close behind at half the dimension and less than half the embed time (0.503), potion trails far behind (0.326). tiny keeps every multilingual number within 0.001 of exact at about a quarter of the bytes; on potion it loses 0.013 nDCG@10 and 0.035 recall@100. hybrid lands within 0.001 of exact for the multilingual models and 0.004 above it on potion's recall@100: urna ranks a candidate pool (hnsw plus bm25) by exact cosine, so the top of the list is the brute-force top and bm25 only swaps a few documents into the tail.
+
+### all 2601 queries
+
+| model | preset | file MB | ndcg@10 | recall@10 | recall@100 | hit@1 | search ms/query |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| minilm | exact | 84.6 | 0.503 | 0.659 | 0.829 | 0.281 | 2.21 |
+| minilm | tiny | 22.8 | 0.503 | 0.658 | 0.828 | 0.281 | 1.52 |
+| minilm | hybrid | 54.4 | 0.503 | 0.659 | 0.829 | 0.281 | 2.67 |
+| mpnet | exact | 120.4 | 0.528 | 0.690 | 0.850 | 0.295 | 6.28 |
+| mpnet | tiny | 31.7 | 0.528 | 0.690 | 0.850 | 0.294 | 2.56 |
+| mpnet | hybrid | 90.2 | 0.528 | 0.690 | 0.850 | 0.295 | 3.66 |
+| potion | exact | 72.6 | 0.326 | 0.399 | 0.569 | 0.198 | 1.58 |
+| potion | tiny | 19.6 | 0.313 | 0.381 | 0.533 | 0.192 | 0.65 |
+| potion | hybrid | 42.3 | 0.327 | 0.401 | 0.572 | 0.198 | 2.13 |
+
+- nDCG@10 is graded (2 for the document the headline was written for, 1 for its FakeTrue.Br pair); recall counts any judged document; hit@1 asks for the grade-2 document at rank 1.
+- Search time is the python call after the query vector exists, on the build machine; it leaves out embedding the query.
+
+### FakeTrue.Br headlines (1728 queries)
+
+| model | preset | ndcg@10 | recall@10 | recall@100 | hit@1 |
+| --- | --- | ---: | ---: | ---: | ---: |
+| minilm | exact | 0.515 | 0.683 | 0.871 | 0.244 |
+| minilm | tiny | 0.514 | 0.682 | 0.871 | 0.245 |
+| minilm | hybrid | 0.515 | 0.683 | 0.871 | 0.244 |
+| mpnet | exact | 0.532 | 0.701 | 0.880 | 0.255 |
+| mpnet | tiny | 0.532 | 0.702 | 0.880 | 0.254 |
+| mpnet | hybrid | 0.532 | 0.701 | 0.881 | 0.255 |
+| potion | exact | 0.318 | 0.390 | 0.596 | 0.163 |
+| potion | tiny | 0.300 | 0.367 | 0.552 | 0.154 |
+| potion | hybrid | 0.319 | 0.392 | 0.600 | 0.163 |
+
+### FACTCK.BR titles (873 queries)
+
+| model | preset | ndcg@10 | recall@10 | recall@100 | hit@1 |
+| --- | --- | ---: | ---: | ---: | ---: |
+| minilm | exact | 0.481 | 0.612 | 0.745 | 0.353 |
+| minilm | tiny | 0.480 | 0.611 | 0.744 | 0.352 |
+| minilm | hybrid | 0.481 | 0.612 | 0.745 | 0.353 |
+| mpnet | exact | 0.521 | 0.668 | 0.790 | 0.375 |
+| mpnet | tiny | 0.520 | 0.667 | 0.789 | 0.375 |
+| mpnet | hybrid | 0.521 | 0.668 | 0.790 | 0.375 |
+| potion | exact | 0.341 | 0.417 | 0.515 | 0.267 |
+| potion | tiny | 0.337 | 0.409 | 0.496 | 0.265 |
+| potion | hybrid | 0.342 | 0.418 | 0.517 | 0.267 |
+
+provenance: measured; source: benchmark/tools/evaluate.py runs, scored against benchmark/queries/qrels.tsv; date: 2026-10-02; notes: silver qrels; every number is a lower bound shared by all rows (docs/methodology.md)

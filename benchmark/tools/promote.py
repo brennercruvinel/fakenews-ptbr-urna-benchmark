@@ -92,7 +92,7 @@ def promote(cand: Path, version: str, force: bool) -> int:
         env.die(f"{env.rel(dest)} exists; pass --force to overwrite")
     dest.mkdir(parents=True, exist_ok=True)
     for n in FILES:
-        shutil.copy2(cand / n, dest / n)
+        env.place(cand / n, dest / n)
     (dest / "CITATION_KEY").write_text(citation_key(dest / "fakenews.urna"))
     (dest / "SHA256SUMS").write_text(sums(dest))
     print(f"promoted {env.rel(cand)} to {env.rel(dest)}")

@@ -2,101 +2,106 @@
 
 # fakenews-ptbr-urna-benchmark
 
-Seven public Brazilian Portuguese fake-news datasets, normalized into one deduplicated corpus and packed into single `.urna` files, with the queries and the relevance judgments that say whether search over them works.
+Seven public Brazilian Portuguese fake-news datasets, deduplicated into one corpus of 23,335 documents and packed into single `.urna` files, with 2,601 queries and the relevance judgments that say how well search over them works.
 
-This is the benchmark behind the text corpus of [Urna](https://github.com/hoffresearch/urna): the `data/corpus_next.v1.urna` file its regression gate measures. Until now that corpus was rebuilt by a script inside the engine repo, from datasets nobody else could fetch in the same state. This repo moves the preparation, the build and the evaluation out of the engine, pins every source, and publishes the result on Hugging Face so the gate's baseline has an identity anyone can check.
+This is the rebuildable successor of the text corpus in [Urna](https://github.com/hoffresearch/urna). Urna's regression gate measures `data/corpus_next.v1.urna`, a file that can no longer be rebuilt: its loader read csv files and a mirror that are gone upstream. Here every source is pinned to a revision and a tree hash, the build runs on the published `urna` wheel without a checkout, and the embedder is yours to pick.
 
-> Status: scaffold for review. No data, no tools, no profiles, no results and no releases yet.
+> Status: v0.1, private. The Hugging Face dataset stays private until the redistribution item below is closed.
 
-## Sources
+## Pick a model
 
-| Source | Upstream | Rows | Splits kept |
-|---|---|---:|---|
-| `FakeBr-hf` | [vzani/corpus-fake-br](https://huggingface.co/datasets/vzani/corpus-fake-br) | 7.2k | train, test |
-| `FakeTrue.Br-hf` | [vzani/corpus-faketrue-br](https://huggingface.co/datasets/vzani/corpus-faketrue-br) | 3.6k | train, test |
-| `Fake.br-Corpus` | [roneysco/Fake.br-Corpus](https://github.com/roneysco/Fake.br-Corpus) | 7.2k | none upstream |
-| `FakeRecogna` | [Gabriel-Lino-Garcia/FakeRecogna](https://github.com/Gabriel-Lino-Garcia/FakeRecogna) | 11.9k | none upstream |
-| `FakeTrue.Br` | [jpchav98/FakeTrue.Br](https://github.com/jpchav98/FakeTrue.Br) | 3.6k | none upstream |
-| `factck-br` | [opit-research/factck-br](https://github.com/opit-research/factck-br) | 1.3k | none upstream |
-| `bilstm-combined` | [vzani/portuguese-fake-news-classifier-bilstm-combined](https://huggingface.co/vzani/portuguese-fake-news-classifier-bilstm-combined) | 2.2k | test |
+Three example embedders, all on the same corpus and the same queries. None is a default: `profiles/models.toml` lists them, and adding one is a new entry there.
 
-Each one gets pinned to a commit or a Hub revision in `sources/sources.toml`, with its license and the loader that reads it. Those fields are empty in this scaffold and have to be filled before the first publication.
+| Model | Dim | nDCG@10 | recall@10 | Embed the corpus (CPU) | Query from an installed Urna |
+|---|---:|---:|---:|---:|---|
+| `mpnet` (paraphrase-multilingual-mpnet-base-v2) | 768 | 0.528 | 0.690 | about 7 min | Urna after 0.5.1, `--model-path` |
+| `minilm` (paraphrase-multilingual-MiniLM-L12-v2) | 384 | 0.503 | 0.660 | about 3 min | Urna after 0.5.1, `--model-path` |
+| `potion` (potion-base-8M, bundled with the wheel) | 256 | 0.326 | 0.399 | seconds | Urna 0.5.1, out of the box |
+
+Numbers are for the `exact` preset on an Apple M4 CPU; the `tiny` and `hybrid` presets of each model are in [RESULTS.md](RESULTS.md). The two multilingual models read the first 128 tokens of each document. Potion is an English static table: Portuguese rides English subwords, and it shows.
+
+## Build one
+
+```sh
+uv sync
+export FAKENEWS_DATA=/path/to/fakenews-data      # sources, models and caches land here, never in the repo
+```
+
+```sh
+uv run python benchmark/tools/fetch_sources.py   # seven sources at their pinned revisions, tree hashes checked
+uv run python benchmark/tools/prepare.py         # normalize, dedup, conflicts, splits
+uv run python benchmark/tools/build.py --model minilm --preset exact
+uv run python benchmark/tools/evaluate.py candidates/minilm-exact
+```
+
+`build.py` downloads the model at its pinned revision into `$FAKENEWS_DATA/models/` and writes `candidates/<model>-<preset>/`: the `.urna`, the chunk map, a build lock (corpus and source hashes, the model snapshot's file hashes and `model_hash`, package versions, platform, device, output hashes) and the manifest Urna reads back. A rebuild on the same machine gives the same `file_hash`. `evaluate.py` writes a TREC run under `benchmark/runs/` and its scores.
+
+## Query one
+
+```sh
+urna retrieve candidates/potion-exact/fakenews.urna "vacina altera o dna" -k 5 --format jsonl
+```
+
+```sh
+urna retrieve candidates/minilm-exact/fakenews.urna "vacina altera o dna" -k 5 --format jsonl \
+  --model-path "$FAKENEWS_DATA/models/minilm-e8f8c211226b"
+```
+
+The potion file answers any Urna 0.5.1 install. The sentence-transformers files need the query route Urna adds after 0.5.1, `torch` and `sentence-transformers` in Urna's venv, and `--model-path` pointing at the pinned snapshot `build.py` downloaded; the [dataset card](https://huggingface.co/datasets/brennercruvinel/fakenews-ptbr-urna-benchmark) has the full list. From Python, `urna.open(path).search(vector, k)` takes a vector embedded by the same model.
 
 ## Documents, chunks and conflicts
 
-The overlap between sources is real (FakeRecogna republishes Fake.br articles, FakeTrue.Br shares headlines with FakeBr-hf), so the corpus is deduplicated by the hash of the normalized text. That hash is the `doc_id`, and it is what `qrels` judges.
+The overlap between sources is large: 10,381 documents appear in more than one source (FakeBr-hf and Fake.br-Corpus share 7,199, FakeTrue.Br and its vzani copy 3,182). The corpus is deduplicated by the SHA-256 of the normalized text, and that hash is the `doc_id`, the unit `qrels` judges.
 
-A `doc_id` is not a citation. Inside a `.urna` file the identity of a chunk is its `chunk_id`, which Urna derives from the canonical text, the `source_uri`, the byte span and the chunker version ([`chunk.rs`](https://github.com/hoffresearch/urna/blob/main/crates/urna-format/src/chunk.rs)). Each release publishes a chunk map (`chunk_id`, `doc_id`, `source_uri`, `byte_start`, `byte_end`, `chunker_version`), checked against the chunk ids read from each `.urna`.
+A `doc_id` is not a citation. Inside a `.urna` file the identity of a chunk is its `chunk_id`, which Urna derives from the canonical text, the `source_uri`, the byte span and the chunker version ([`chunk.rs`](https://github.com/hoffresearch/urna/blob/main/crates/urna-format/src/chunk.rs)). Each build writes a chunk map (`chunk_id`, `doc_id`, `source_uri`, `byte_start`, `byte_end`, `chunker_version`), and both `build.py` and `evaluate.py` refuse a file whose chunk ids differ from it. Here one chunk is one whole document, so the map is the same for every model and preset.
 
-The evaluation turns chunk hits into a document ranking before scoring. Each hit maps to its `doc_id`, the first hit of a document takes the next document rank and later hits of the same document are dropped, so `A, A, B` becomes `A, B` at ranks 1 and 2. Metrics at k use the first k distinct documents, and a query that returns fewer than k distinct documents is run again with more chunks until it has them. The result is a TREC run scored against `qrels.tsv` (`query_id 0 doc_id relevance`). The details are in `docs/methodology.md`.
+The evaluation turns chunk hits into a document ranking before scoring. Each hit maps to its `doc_id`, the first hit of a document takes the next document rank and later hits of the same document are dropped, so `A, A, B` becomes `A, B` at ranks 1 and 2. Metrics at k use the first k distinct documents, and a query that returns fewer than k distinct documents is run again with more chunks. The result is a TREC run scored against `qrels.tsv` (`query_id 0 doc_id relevance`); `ir_measures` gives the same numbers.
 
-Every occurrence of a text is kept in its `origins` list, and two conflicts are recorded explicitly:
+Every occurrence of a text is kept in `origins`, and two conflicts are recorded explicitly:
 
-- `label_conflict`: the origins disagree on the label. The row stays in the corpus with a null `label`, the divergent labels stay in `origins`, and the row is left out of any label-based metric.
-- `split_conflict`: the text appears in an upstream train split and an upstream test split. It goes to `test`, so no test text is also a training text.
-
-The full schema is in the [dataset card](https://huggingface.co/datasets/brennercruvinel/fakenews-ptbr-urna-benchmark).
+- `label_conflict`: the origins disagree on the label. None happen in v0.1, across all 10,381 shared texts.
+- `split_conflict`: the text is in an upstream train split and an upstream test split; it goes to `test`. 1,746 do, all from the bilstm test split overlapping the vzani train splits.
 
 ## What it measures
 
-Two things, reported apart:
+Reported apart, never mixed:
 
-- Stability: the same sources and the same recipe give the same `file_hash`, and the compressed and approximate profiles are compared with `exact`, which is the reference for ranking agreement. This is what Urna's gate checks today, with self-perturbed corpus vectors as queries.
-- Retrieval quality: real claims as queries and `qrels` as the judged answer, recall@k and nDCG@k for every profile, `exact` included. Relevance comes from the judgments, never from agreement with `exact`. This is the ruler the gate is missing.
-
-## Planned workflow
-
-None of the scripts or profiles below exist yet. This is the flow the tasks build toward, not a set of working instructions.
-
-```sh
-urna setup --yes && urna doctor
-export FAKENEWS_DATA=/path/to/fakenews-data
-python benchmark/tools/fetch_sources.py                  # pinned revisions into $FAKENEWS_DATA
-python benchmark/tools/prepare.py                        # normalize, dedup, conflicts, splits
-urna build --spec profiles/exact.toml                    # lands in candidates/exact/
-python benchmark/tools/evaluate.py candidates/exact/fakenews.urna
-```
-
-Running `urna build` from an installed binary, without a checkout of the engine, depends on two things Urna does not do yet:
-
-- shipping the build runner (`urna_forge.py`) and its Python dependencies in the payload `urna setup` installs;
-- a registry preset for `paraphrase-multilingual-MiniLM-L12-v2`, the multilingual model the current corpus uses. Potion is English-only and weak on Portuguese.
-
-Until both land, the build either runs against a checkout of Urna or stays on a Python script in this repo.
+- Retrieval quality ([experiment 02](benchmark/experiments/02-retrieval/)): nDCG@10, recall@10, recall@100 and hit@1 against silver qrels derived from FakeTrue.Br headlines and FACTCK.BR titles. No person judged them and they are incomplete, so every number is a lower bound shared by all rows. [docs/methodology.md](docs/methodology.md) says what that allows.
+- Stability ([experiment 03](benchmark/experiments/03-stability/)): re-embedding and rebuilding give the same bytes, and how much of each preset's top-10 matches `exact` of the same model. Agreement with `exact` is about ranking, not relevance.
+- The corpus itself ([experiment 01](benchmark/experiments/01-corpus/)): what each source contributed, the overlap, and the FACTCK.BR labels the numeric rating scale gets wrong (469 claims rated "Falso" would be true; Urna's old loader used that scale).
 
 <details>
 <summary>Layout</summary>
 
 ```
-sources/                 sources.toml: url, pinned revision, license, loader per upstream
-profiles/                the build recipes (exact, tiny, hybrid), urna build --spec
-benchmark/queries/       queries.jsonl and qrels.tsv (TREC format): real claims and judged relevance
+sources/                 sources.toml: pinned revision, files, tree hash and license per upstream
+profiles/                models.toml (the example embedders), presets.toml (exact, tiny, hybrid)
+benchmark/queries/       queries.jsonl and qrels.tsv (TREC), written by make_queries.py
 benchmark/experiments/   NN-slug/{README.md, results.json, table.md}
-benchmark/tools/         fetch_sources, prepare, overlap_report, export_parquet, evaluate, promote, render_report
-release/v0.1/<profile>/  build lock, stripped manifest, SHA256SUMS, CITATION_KEY
-docs/                    methodology, sources (license bill of materials), changelog
+benchmark/tools/         fetch_sources, prepare, overlap_report, make_queries, build, evaluate,
+                         report, stability, promote, export_parquet, render_report
+release/v0.1/<build>/    build lock, manifest, SHA256SUMS, CITATION_KEY (the .urna and chunk map are on the hub)
+docs/                    methodology, sources (license bill of materials), the gate inside Urna, the MTG reference
 ```
 
-The datasets, `.urna` files, Parquet and caches are gitignored. `render_report.py --check` will be the CI gate.
+Sources, models, `.urna` files, Parquet and runs are gitignored. CI lints the tools and checks that `RESULTS.md` is rendered from the tracked results.
 
 </details>
 
 <details>
 <summary>Artifacts</summary>
 
-The corpus and the chunk map as Parquet, and the `.urna` files, will be on Hugging Face: [brennercruvinel/fakenews-ptbr-urna-benchmark](https://huggingface.co/datasets/brennercruvinel/fakenews-ptbr-urna-benchmark). `release/v0.1/<profile>/SHA256SUMS` pins the bytes, and `CITATION_KEY` pins the identity read from inside the file with `urna inspect --json`.
+The corpus, the chunk map, the queries and the qrels as Parquet, and every `.urna` of v0.1, are on Hugging Face: [brennercruvinel/fakenews-ptbr-urna-benchmark](https://huggingface.co/datasets/brennercruvinel/fakenews-ptbr-urna-benchmark). `release/v0.1/<build>/SHA256SUMS` pins the bytes; `CITATION_KEY` pins the identity read from inside the file with `urna inspect --json`; `python benchmark/tools/promote.py --check release/v0.1/*` verifies a download.
 
 </details>
 
 ## Before the first publication
 
-- [ ] Every source in `sources/sources.toml` has a pinned revision and a license.
-- [ ] `docs/sources.md` confirms the redistribution terms of each source; factck-br may be share-alike.
-- [ ] The embedder is decided: a multilingual registry preset in Urna, or a script here.
-- [ ] The gate baseline is decided: either this build reproduces the current `file_hash` of `corpus_next.v1.urna`, or the gate moves to the v0.1 release and the old hash is kept as history.
-
-The Hugging Face dataset stays private until all four are done.
+- [x] Every source in `sources/sources.toml` has a pinned revision, a tree hash and its declared license.
+- [x] The embedder is the user's choice, from pinned examples.
+- [x] The gate baseline stays the frozen `corpus_next.v1.urna`, identified by its `file_hash`; [docs/urna-gate.md](docs/urna-gate.md) says why it cannot be rebuilt.
+- [ ] Written permission from the authors of Fake.br-Corpus, FakeRecogna and FakeTrue.Br, which declare no license, or a v0.1 published without their texts. [docs/sources.md](docs/sources.md) has the details.
 
 ## License
 
-MIT (`LICENSE`) covers the code, the recipes and the results written in this repo. It does not cover the corpus text, nor queries taken from upstream sources: those keep the terms of their source, listed in `docs/sources.md`, and a built `.urna` carries the most restrictive of them.
+MIT (`LICENSE`) covers the code, the recipes and the results written in this repo. It does not cover the corpus text, nor the queries, which are headlines and titles taken from the sources: those keep the terms of their source, listed in `docs/sources.md`, and a built `.urna` carries the most restrictive of them.

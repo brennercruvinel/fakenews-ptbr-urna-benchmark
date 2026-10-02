@@ -1,0 +1,7 @@
+content_hash = sha256:bd2813c84259694a834e4bbe97d3c6d59c0dc0bae1b4f80d0af07bbe61609b77
+file_hash = sha256:3c57b09a1bfa2f6039bfd48cd6b3494307982c00d95d82a8f4a2abe86adc7a22
+chunker_version = fakenews-ptbr/0.1
+title = fakenews-ptbr potion tiny
+n_chunks = 23335
+embedding_model = minishlab/potion-base-8M/v1
+read_with = urna 0.5.1 inspect --json

@@ -1,0 +1,7 @@
+content_hash = sha256:3aa3d11651fed46ded2a4bc583023b8125e93dd18733177073b80a7a05e51c56
+file_hash = sha256:5297c9560a892554171e84f2f402a1e38146fb14a4b09f9aaaba654555013968
+chunker_version = fakenews-ptbr/0.1
+title = fakenews-ptbr mpnet exact
+n_chunks = 23335
+embedding_model = sentence-transformers/paraphrase-multilingual-mpnet-base-v2
+read_with = urna 0.5.1 inspect --json

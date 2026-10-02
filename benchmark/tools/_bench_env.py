@@ -70,6 +70,17 @@ def tree_hash(root: Path, files: list[Path]) -> str:
     return "sha256:" + hashlib.sha256("\n".join(lines).encode()).hexdigest()
 
 
+def place(src: Path, dst: Path) -> None:
+    """Hardlink src to dst (same bytes, no second copy on disk), copying when the filesystems differ."""
+    import shutil
+
+    dst.unlink(missing_ok=True)
+    try:
+        os.link(src, dst)
+    except OSError:
+        shutil.copy2(src, dst)
+
+
 def write_json(path: Path, doc) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(doc, indent=1, sort_keys=True, ensure_ascii=False) + "\n")
