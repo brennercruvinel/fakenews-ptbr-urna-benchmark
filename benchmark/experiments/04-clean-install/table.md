@@ -6,11 +6,12 @@
 
 | check | result |
 | --- | --- |
-| source tree hashes (7 sources) | match sources.toml |
-| corpus_hash | sha256:12c173b9164b38d9956dbf4689dd3a93f1d9b876b95cc33d9e9b5a38ba76921e |
-| queries.jsonl and qrels.tsv | identical to the tracked files |
-| potion-exact file_hash | sha256:ab5bf432be08f9ac9d02e2b4d50c262811cc0aaaec5e1ea39aad00107d66e8aa, as in release/v0.1 |
-| minilm-exact file_hash | sha256:21c1edc22e9447a77376945f9be38aacee80ebbefed70479dd3993f6f665836e, as in release/v0.1 |
-| urna validate (urna 0.5.1) | both files pass |
+| source tree hashes | match sources.toml |
+| corpus_hash | sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a |
+| queries and qrels | match the tracked files |
+| potion-exact file_hash | sha256:b044723b17b706023cda8575d13d22e978ba2e1b518e97ab579aba77aac830be |
+| potion-exact urna validate | urna 0.5.1 |
+| minilm-exact file_hash | sha256:4bcb8e0fc38a1c13f9459ed8b1553cc7c5261c85bbb515235c4fe87e34d04cff |
+| minilm-exact urna validate | urna 0.5.1 |
 
-provenance: measured; source: sh benchmark/tools/check_clean.sh WORK potion minilm; date: 2026-10-02; notes: fresh git clone, uv sync, empty FAKENEWS_DATA; the minilm snapshot downloaded and the corpus re-embedded from scratch; Apple M4, cpu
+provenance: measured; source: benchmark/tools/check_clean.sh, recorded by record_clean.py; date: 2026-10-02; notes: commit 1bc33d5918e78aa6fd7487f53cf723343dd763a3; fresh clone, uv sync, empty FAKENEWS_DATA; Darwin arm64, cpu
