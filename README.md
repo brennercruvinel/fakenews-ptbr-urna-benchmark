@@ -1,12 +1,8 @@
 ![urna: offline-first vector database, rust and python](https://raw.githubusercontent.com/hoffresearch/urna/main/assets/images/urna-hoff-research-db-thumb.png)
 
-# fakenews-ptbr-urna-benchmark
-
 Seven public Brazilian Portuguese fake-news datasets, deduplicated into one corpus of 23,335 documents and packed into single `.urna` files, with 2,601 queries and the relevance judgments that say how well search over them works.
 
 This is the rebuildable successor of the text corpus in [Urna](https://github.com/hoffresearch/urna). Urna's regression gate measures `data/corpus_next.v1.urna`, a file that can no longer be rebuilt: its loader read csv files and a mirror that are gone upstream. Here every source is pinned to a revision and a tree hash, the build runs on the published `urna` wheel without a checkout, and the embedder is yours to pick.
-
-> Status: v0.1, private. Every source is licensed MIT or Apache-2.0; the evidence for three maintainer-verified licenses is still to be recorded ([docs/sources.md](docs/sources.md)).
 
 ## Pick a model
 
