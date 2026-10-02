@@ -101,7 +101,7 @@ def main() -> int:
 
     doc = {
         "experiment": EXPERIMENT,
-        "title": "stability: re-embedding, rebuilding, and agreement with exact",
+        "title": "re-embedding, rebuilding, and agreement with exact",
         "provenance": {
             "status": "measured",
             "source": "benchmark/tools/stability.py",

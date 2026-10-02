@@ -1,0 +1,179 @@
+{
+ "experiment": "03-stability",
+ "provenance": {
+  "date": "2026-10-02",
+  "notes": "re-embed sample: the first 1000 documents of the corpus",
+  "source": "benchmark/tools/stability.py",
+  "status": "measured"
+ },
+ "tables": [
+  {
+   "columns": [
+    {
+     "key": "model",
+     "label": "model"
+    },
+    {
+     "key": "device",
+     "label": "device"
+    },
+    {
+     "key": "identical",
+     "label": "bit-identical"
+    },
+    {
+     "fmt": "f9",
+     "key": "max_abs_diff",
+     "label": "max abs diff"
+    }
+   ],
+   "rows": [
+    {
+     "device": "cpu",
+     "identical": true,
+     "max_abs_diff": 0.0,
+     "model": "potion"
+    },
+    {
+     "device": "cpu",
+     "identical": true,
+     "max_abs_diff": 0.0,
+     "model": "minilm"
+    },
+    {
+     "device": "cpu",
+     "identical": true,
+     "max_abs_diff": 0.0,
+     "model": "mpnet"
+    }
+   ],
+   "title": "re-embedding the same documents"
+  },
+  {
+   "columns": [
+    {
+     "key": "build",
+     "label": "build"
+    },
+    {
+     "key": "file_hash",
+     "label": "file_hash (prefix)"
+    },
+    {
+     "key": "same",
+     "label": "same file_hash"
+    }
+   ],
+   "rows": [
+    {
+     "build": "potion-exact",
+     "file_hash": "sha256:ab5bf432be08",
+     "same": true
+    },
+    {
+     "build": "potion-tiny",
+     "file_hash": "sha256:3c57b09a1bfa",
+     "same": true
+    },
+    {
+     "build": "potion-hybrid",
+     "file_hash": "sha256:43b3a7ab6c1c",
+     "same": true
+    },
+    {
+     "build": "minilm-exact",
+     "file_hash": "sha256:21c1edc22e94",
+     "same": true
+    },
+    {
+     "build": "minilm-tiny",
+     "file_hash": "sha256:8de85b87bd2b",
+     "same": true
+    },
+    {
+     "build": "minilm-hybrid",
+     "file_hash": "sha256:8e8889984e16",
+     "same": true
+    },
+    {
+     "build": "mpnet-exact",
+     "file_hash": "sha256:5297c9560a89",
+     "same": true
+    },
+    {
+     "build": "mpnet-tiny",
+     "file_hash": "sha256:d9fad55a0dbc",
+     "same": true
+    },
+    {
+     "build": "mpnet-hybrid",
+     "file_hash": "sha256:b0a5b9415a4e",
+     "same": true
+    }
+   ],
+   "title": "rebuilding every file"
+  },
+  {
+   "columns": [
+    {
+     "key": "model",
+     "label": "model"
+    },
+    {
+     "key": "preset",
+     "label": "preset"
+    },
+    {
+     "fmt": "f3",
+     "key": "overlap",
+     "label": "top-10 overlap"
+    },
+    {
+     "fmt": "f3",
+     "key": "same_top1",
+     "label": "same top-1"
+    }
+   ],
+   "rows": [
+    {
+     "model": "potion",
+     "overlap": 0.9299500192233757,
+     "preset": "tiny",
+     "same_top1": 0.9334871203383314
+    },
+    {
+     "model": "potion",
+     "overlap": 0.9761245674740485,
+     "preset": "hybrid",
+     "same_top1": 0.9903883121876201
+    },
+    {
+     "model": "minilm",
+     "overlap": 0.9951557093425604,
+     "preset": "tiny",
+     "same_top1": 0.9930795847750865
+    },
+    {
+     "model": "minilm",
+     "overlap": 0.9998846597462514,
+     "preset": "hybrid",
+     "same_top1": 1.0
+    },
+    {
+     "model": "mpnet",
+     "overlap": 0.9941560938100731,
+     "preset": "tiny",
+     "same_top1": 0.9950019223375625
+    },
+    {
+     "model": "mpnet",
+     "overlap": 0.9999615532487505,
+     "preset": "hybrid",
+     "same_top1": 1.0
+    }
+   ],
+   "title": "top-10 agreement with the exact preset of the same model"
+  }
+ ],
+ "title": "re-embedding, rebuilding, and agreement with exact"
+}

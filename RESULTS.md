@@ -73,7 +73,7 @@ provenance: measured; source: benchmark/tools/overlap_report.py over prepare.py 
 
 hypothesis: a multilingual sentence-transformers model finds the judged documents far more often than potion, an English static table, and the compressed presets of a model lose little against its exact preset.
 method: the 2,601 queries of benchmark/queries, embedded by each build's own model, searched the way the urna cli routes them (exact, hnsw, or hybrid with the query text, beam max(100, k)); chunk hits become a document ranking (first hit per document), scored as a TREC run against the silver qrels; ir_measures reproduces the numbers.
-verdict: mpnet leads (nDCG@10 0.528), minilm is close behind at half the dimension and less than half the embed time (0.503), potion trails far behind (0.326). tiny keeps every multilingual number within 0.001 of exact at about a quarter of the bytes; on potion it loses 0.013 nDCG@10 and 0.035 recall@100. hybrid lands within 0.001 of exact for the multilingual models and 0.004 above it on potion's recall@100: urna ranks a candidate pool (hnsw plus bm25) by exact cosine, so the top of the list is the brute-force top and bm25 only swaps a few documents into the tail.
+verdict: mpnet leads (nDCG@10 0.528), minilm is close behind at half the dimension and less than half the embed time (0.503), potion trails far behind (0.326). tiny keeps every multilingual number within 0.001 of exact at about a quarter of the bytes; on potion it loses 0.013 nDCG@10 and 0.035 recall@100. hybrid lands within 0.001 of exact for the multilingual models and 0.004 above it on potion's recall@100: urna ranks a candidate pool (hnsw plus bm25) by exact cosine, so its top-1 is the brute-force top-1 on every multilingual query and on 99% of potion's (experiment 03), and bm25 mostly swaps documents into the tail.
 
 ### all 2601 queries
 
@@ -121,3 +121,44 @@ verdict: mpnet leads (nDCG@10 0.528), minilm is close behind at half the dimensi
 | potion | hybrid | 0.342 | 0.418 | 0.517 | 0.267 |
 
 provenance: measured; source: benchmark/tools/evaluate.py runs, scored against benchmark/queries/qrels.tsv; date: 2026-10-02; notes: silver qrels; every number is a lower bound shared by all rows (docs/methodology.md)
+
+## 03 stability: re-embedding, rebuilding, and agreement with exact
+
+hypothesis: on one machine, the same sources, model snapshot and preset give a byte-identical file, and the int8 hnsw preset keeps the exact preset's top-10.
+method: re-embed the first 1,000 documents with each model and compare the vectors bit for bit; rebuild every file with build.py into a scratch dir and compare file_hash; per model, the share of each preset's top-10 documents that is in the exact preset's top-10, over all queries.
+verdict: everything comes back the same on one machine: re-embedding gives bit-identical vectors for all three models on cpu, and all nine rebuilds give the same file_hash. tiny keeps over 99% of exact's top-10 for minilm and mpnet and 93% for potion, whose int8 rows lose more of a weaker signal. hybrid keeps over 99.9% of the top-10 for the multilingual models and 97.6% for potion. Agreement with exact measures how much compression moves the ranking; it says nothing about relevance, which is experiment 02. Builds on another machine or device are not covered: the lock records platform and device for that comparison.
+
+### re-embedding the same documents
+
+| model | device | bit-identical | max abs diff |
+| --- | --- | --- | ---: |
+| potion | cpu | yes | 0.000000000 |
+| minilm | cpu | yes | 0.000000000 |
+| mpnet | cpu | yes | 0.000000000 |
+
+### rebuilding every file
+
+| build | file_hash (prefix) | same file_hash |
+| --- | --- | --- |
+| potion-exact | sha256:ab5bf432be08 | yes |
+| potion-tiny | sha256:3c57b09a1bfa | yes |
+| potion-hybrid | sha256:43b3a7ab6c1c | yes |
+| minilm-exact | sha256:21c1edc22e94 | yes |
+| minilm-tiny | sha256:8de85b87bd2b | yes |
+| minilm-hybrid | sha256:8e8889984e16 | yes |
+| mpnet-exact | sha256:5297c9560a89 | yes |
+| mpnet-tiny | sha256:d9fad55a0dbc | yes |
+| mpnet-hybrid | sha256:b0a5b9415a4e | yes |
+
+### top-10 agreement with the exact preset of the same model
+
+| model | preset | top-10 overlap | same top-1 |
+| --- | --- | ---: | ---: |
+| potion | tiny | 0.930 | 0.933 |
+| potion | hybrid | 0.976 | 0.990 |
+| minilm | tiny | 0.995 | 0.993 |
+| minilm | hybrid | 1.000 | 1.000 |
+| mpnet | tiny | 0.994 | 0.995 |
+| mpnet | hybrid | 1.000 | 1.000 |
+
+provenance: measured; source: benchmark/tools/stability.py; date: 2026-10-02; notes: re-embed sample: the first 1000 documents of the corpus
