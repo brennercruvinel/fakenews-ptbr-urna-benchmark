@@ -1,10 +1,10 @@
 {
  "inspect": {
   "blobs": null,
-  "content_hash": "sha256:bd2813c84259694a834e4bbe97d3c6d59c0dc0bae1b4f80d0af07bbe61609b77",
+  "content_hash": "sha256:4900b69c0343cf8844bb43cfab11e73c7df37d68437b6b9240c4d94254264bcf",
   "embedding_dim": 256,
-  "file_hash": "sha256:3c57b09a1bfa2f6039bfd48cd6b3494307982c00d95d82a8f4a2abe86adc7a22",
-  "file_size": 19604741,
+  "file_hash": "sha256:84b0861e1712fd320f46b59361641820c611807bb8c1c474c4106654505b6ad9",
+  "file_size": 19604805,
   "format_version": 1,
   "magic": "URNA",
   "manifest": {
@@ -23,7 +23,7 @@
    "embedding_model": "minishlab/potion-base-8M/v1",
    "format_version": 1,
    "index_type": "hnsw",
-   "license": "mixed (per-source, see docs/sources.md)",
+   "license": "MIT and Apache-2.0, per source (docs/sources.md)",
    "metric": "ip",
    "model_hash": "sha256:8f2eb91a754b4da59cdd8223d0ba196185fed1bb6f092fd2be0ff02b893b1c98",
    "n_chunks": 23335,
@@ -42,7 +42,7 @@
     "checksum": "f72ac270d8232996",
     "encoding": 4,
     "name": "chunk_ids",
-    "offset": 1088,
+    "offset": 1152,
     "section_id": 1,
     "size": 746725
    },
@@ -50,7 +50,7 @@
     "checksum": "2e044d65381bb155",
     "encoding": 1,
     "name": "chunks_canonical",
-    "offset": 747840,
+    "offset": 747904,
     "section_id": 2,
     "size": 10806981
    },
@@ -58,7 +58,7 @@
     "checksum": "c76d96d502d6fe85",
     "encoding": 1,
     "name": "chunks_original_spans",
-    "offset": 11554880,
+    "offset": 11554944,
     "section_id": 3,
     "size": 874354
    },
@@ -66,23 +66,23 @@
     "checksum": "97975e185748119c",
     "encoding": 3,
     "name": "embeddings",
-    "offset": 12429248,
+    "offset": 12429312,
     "section_id": 4,
     "size": 6067108
    },
    {
-    "checksum": "53ae697d9a62d9a7",
+    "checksum": "2e10ee1d1ccc525d",
     "encoding": 1,
     "name": "provenance",
-    "offset": 18496384,
+    "offset": 18496448,
     "section_id": 5,
-    "size": 121
+    "size": 122
    },
    {
     "checksum": "3dfaffaf63da0cd0",
     "encoding": 1,
     "name": "search_contract",
-    "offset": 18496512,
+    "offset": 18496576,
     "section_id": 6,
     "size": 95
    },
@@ -90,7 +90,7 @@
     "checksum": "8af89c0486b461f7",
     "encoding": 0,
     "name": "hnsw_index",
-    "offset": 18496640,
+    "offset": 18496704,
     "section_id": 7,
     "size": 1108061
    }
@@ -101,7 +101,7 @@
   "version_minor": 0
  },
  "timings_s": {
-  "build": 85.9,
+  "build": 83.7,
   "embed": 0.0
  }
 }

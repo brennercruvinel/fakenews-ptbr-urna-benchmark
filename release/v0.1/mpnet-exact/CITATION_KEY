@@ -1,5 +1,5 @@
-content_hash = sha256:3aa3d11651fed46ded2a4bc583023b8125e93dd18733177073b80a7a05e51c56
-file_hash = sha256:5297c9560a892554171e84f2f402a1e38146fb14a4b09f9aaaba654555013968
+content_hash = sha256:4e5b8f4a006af769d9023dab618b54c19d9a6c8cd87433c791577796c0ba4747
+file_hash = sha256:c6ea967990ea3aa4926d66345fcc71d24fcadbcc99e3b565c4e289f6f405510b
 chunker_version = fakenews-ptbr/0.1
 title = fakenews-ptbr mpnet exact
 n_chunks = 23335

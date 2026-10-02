@@ -16,7 +16,7 @@ text, its chunker version CHUNKER_VERSION, so chunk_id is fixed by the text alon
 and the map is the same for every model and preset. After the build the chunk ids
 read from the file must equal the map, in order, or the build fails.
 
-Document vectors are cached per model, revision, device and corpus_hash under
+Document vectors are cached per model, revision, device and the doc_ids under
 $FAKENEWS_DATA/embed/, so the three presets of a model embed once.
 """
 
@@ -91,9 +91,8 @@ def chunk_map(corpus: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def doc_vectors(emb, corpus: pd.DataFrame, corpus_hash: str) -> tuple[np.ndarray, float]:
-    m = emb.entry
-    cache = env.data_root() / "embed" / f"{m['name']}-{m['revision'][:12]}-{emb.device}-{corpus_hash[7:19]}.npy"
+def doc_vectors(emb, corpus: pd.DataFrame) -> tuple[np.ndarray, float]:
+    cache = _embed.cache_path(emb.entry, emb.device, corpus["doc_id"])
     if cache.is_file():
         return np.load(cache), 0.0
     t0 = time.perf_counter()
@@ -129,7 +128,7 @@ def main() -> int:
     emb = _embed.load(args.model, args.device)
     print(f"{args.model} ({emb.embedding_model}, {emb.dim}d) x {args.preset}: {len(corpus)} docs")
 
-    vecs, embed_s = doc_vectors(emb, corpus, prep["corpus_hash"])
+    vecs, embed_s = doc_vectors(emb, corpus)
     cmap = chunk_map(corpus)
     chunks = [
         {
@@ -158,7 +157,7 @@ def main() -> int:
         title=f"fakenews-ptbr {args.model} {args.preset}",
         version="0.1.0",
         description="Seven pt-br fake-news datasets, deduplicated by text; one chunk per document.",
-        license="mixed (per-source, see docs/sources.md)",
+        license="MIT and Apache-2.0, per source (docs/sources.md)",
         provenance={"corpus_hash": prep["corpus_hash"], "model": args.model, "preset": args.preset},
         reproducible=True,
         **preset["kwargs"],

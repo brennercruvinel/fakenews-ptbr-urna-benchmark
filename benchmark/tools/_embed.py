@@ -107,6 +107,15 @@ class PotionEmbedder:
         return _renorm(np.asarray(out, dtype=np.float32))
 
 
+def cache_path(m: dict, device: str, doc_ids) -> Path:
+    """Where a model's document vectors are cached: keyed by model, revision, device and the
+    doc_ids in order, so a change to metadata alone (labels, licenses) never re-embeds."""
+    import hashlib
+
+    key = hashlib.sha256("\n".join(doc_ids).encode()).hexdigest()[:12]
+    return env.data_root() / "embed" / f"{m['name']}-{m['revision'][:12]}-{device}-{key}.npy"
+
+
 def load(name: str, device: str = "cpu"):
     m = model_entry(name)
     if m["kind"] == "sentence-transformers":

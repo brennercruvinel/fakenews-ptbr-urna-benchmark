@@ -1,4 +1,5 @@
 {
+ "corpus_hash": "sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a",
  "experiment": "01-corpus",
  "provenance": {
   "date": "2026-10-02",
@@ -46,10 +47,15 @@
     {
      "key": "license",
      "label": "license"
+    },
+    {
+     "key": "basis",
+     "label": "license basis"
     }
    ],
    "rows": [
     {
+     "basis": "declared",
      "dropped_no_verdict": 0,
      "dropped_short": 0,
      "dup_earlier": 0,
@@ -60,6 +66,7 @@
      "source": "FakeBr-hf"
     },
     {
+     "basis": "declared",
      "dropped_no_verdict": 0,
      "dropped_short": 0,
      "dup_earlier": 0,
@@ -70,36 +77,40 @@
      "source": "FakeTrue.Br-hf"
     },
     {
+     "basis": "maintainer-verified",
      "dropped_no_verdict": 0,
      "dropped_short": 0,
      "dup_earlier": 7199,
      "dup_within": 1,
-     "license": "none-declared",
+     "license": "MIT",
      "new_docs": 0,
      "read": 7200,
      "source": "Fake.br-Corpus"
     },
     {
+     "basis": "maintainer-verified",
      "dropped_no_verdict": 0,
      "dropped_short": 1,
      "dup_earlier": 0,
      "dup_within": 0,
-     "license": "none-declared",
+     "license": "MIT",
      "new_docs": 11902,
      "read": 11903,
      "source": "FakeRecogna"
     },
     {
+     "basis": "maintainer-verified",
      "dropped_no_verdict": 0,
      "dropped_short": 0,
      "dup_earlier": 3182,
      "dup_within": 400,
-     "license": "none-declared",
+     "license": "MIT",
      "new_docs": 0,
      "read": 3582,
      "source": "FakeTrue.Br"
     },
     {
+     "basis": "declared",
      "dropped_no_verdict": 248,
      "dropped_short": 13,
      "dup_earlier": 0,
@@ -110,6 +121,7 @@
      "source": "factck-br"
     },
     {
+     "basis": "declared",
      "dropped_no_verdict": 0,
      "dropped_short": 0,
      "dup_earlier": 2139,
@@ -155,7 +167,7 @@
     }
    ],
    "notes": [
-    "corpus_hash sha256:12c173b9164b38d9956dbf4689dd3a93f1d9b876b95cc33d9e9b5a38ba76921e, 23335 docs"
+    "corpus_hash sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a, 23335 docs"
    ],
    "rows": [
     {

@@ -1,9 +1,9 @@
 {
  "inspect": {
   "blobs": null,
-  "content_hash": "sha256:d5f58bb60a612be9ff6e68ff1044523e512a331d8e3785a63daba773257c2b09",
+  "content_hash": "sha256:fde9b4f1f9a0604ebee3b7f3ddd2d213d8774be4ea6d1e0a8d57b599bad2529b",
   "embedding_dim": 256,
-  "file_hash": "sha256:43b3a7ab6c1c4abda50212e75323e1950de5d35089813472e07de198fa35d744",
+  "file_hash": "sha256:172838f356e939b9ef8cf43f18cebdb11e36b98bef07af6db4e9937c9d298ad4",
   "file_size": 42255479,
   "format_version": 1,
   "magic": "URNA",
@@ -23,7 +23,7 @@
    "embedding_model": "minishlab/potion-base-8M/v1",
    "format_version": 1,
    "index_type": "hnsw",
-   "license": "mixed (per-source, see docs/sources.md)",
+   "license": "MIT and Apache-2.0, per source (docs/sources.md)",
    "metric": "ip",
    "model_hash": "sha256:8f2eb91a754b4da59cdd8223d0ba196185fed1bb6f092fd2be0ff02b893b1c98",
    "n_chunks": 23335,
@@ -71,12 +71,12 @@
     "size": 23895040
    },
    {
-    "checksum": "bec341a93f6dd1f4",
+    "checksum": "3a801411be3ba692",
     "encoding": 1,
     "name": "provenance",
     "offset": 36324352,
     "section_id": 5,
-    "size": 122
+    "size": 123
    },
    {
     "checksum": "3dfaffaf63da0cd0",
@@ -109,7 +109,7 @@
   "version_minor": 0
  },
  "timings_s": {
-  "build": 85.8,
+  "build": 87.6,
   "embed": 0.0
  }
 }

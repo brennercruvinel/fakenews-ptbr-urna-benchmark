@@ -50,4 +50,4 @@ The gate needs the file, not the build: it reads `corpus_next.v1.urna` and never
 
 ## The query side
 
-A MiniLM corpus is queried through `python/embed_query.py`. Urna 0.5.1 refuses it from an installed binary; the route and a `minilm-multilingual` registry preset are in pull request #264, unreleased.
+A MiniLM corpus is queried through `python/embed_query.py`. Urna 0.5.1 refuses it from an installed binary. Pull request #264, merged into `main` on 2026-10-02 and not yet released, fixes that: the payload ships `embed_query.py`, `urna setup` replaces an older payload and keeps the venv, the registry gains `minilm-multilingual` with the same fingerprint, and a failed query names its cause and the fix.

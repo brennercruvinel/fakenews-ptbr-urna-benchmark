@@ -87,6 +87,7 @@ def promote(cand: Path, version: str, force: bool) -> int:
     for n in FILES:
         if not (cand / n).is_file():
             env.die(f"{env.rel(cand)}: missing {n}")
+    env.require_corpus(json.loads((cand / "build.lock.json").read_text())["corpus"]["corpus_hash"], env.rel(cand))
     dest = env.RELEASE / version / cand.name
     if dest.exists() and any(dest.iterdir()) and not force:
         env.die(f"{env.rel(dest)} exists; pass --force to overwrite")

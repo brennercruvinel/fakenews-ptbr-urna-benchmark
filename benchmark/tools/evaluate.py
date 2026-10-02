@@ -100,6 +100,7 @@ def evaluate(build_dir: Path, queries: list[dict], qrels: dict, embedders: dict)
     import urna
 
     lock = json.loads((build_dir / "build.lock.json").read_text())
+    env.require_corpus(lock["corpus"]["corpus_hash"], env.rel(build_dir))
     preset = {p["name"]: p for p in env.load_toml(env.PRESETS_TOML)["preset"]}[lock["build"]["preset"]]
     cmap = pd.read_parquet(build_dir / "chunk_map.parquet")
     f = urna.open(str(build_dir / "fakenews.urna"))
@@ -134,6 +135,7 @@ def evaluate(build_dir: Path, queries: list[dict], qrels: dict, embedders: dict)
         "preset": lock["build"]["preset"],
         "search": preset["search"],
         "file_hash": lock["output"]["file_hash"],
+        "corpus_hash": lock["corpus"]["corpus_hash"],
         "bytes": lock["output"]["bytes"],
         "n_queries": len(per_query),
         "all": mean(list(per_query.values())),

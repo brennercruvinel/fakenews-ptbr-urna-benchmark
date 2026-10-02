@@ -17,15 +17,15 @@ verdict: 23,335 documents. Fake.br enters once instead of twice (corpus_next.v1 
 
 ### what each source contributed, in source order
 
-| source | read | too short | no verdict | new docs | already in an earlier source | repeated in the source | license |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| FakeBr-hf | 7200 | 0 | 0 | 7199 | 0 | 1 | Apache-2.0 |
-| FakeTrue.Br-hf | 3582 | 0 | 0 | 3182 | 0 | 400 | Apache-2.0 |
-| Fake.br-Corpus | 7200 | 0 | 0 | 0 | 7199 | 1 | none-declared |
-| FakeRecogna | 11903 | 1 | 0 | 11902 | 0 | 0 | none-declared |
-| FakeTrue.Br | 3582 | 0 | 0 | 0 | 3182 | 400 | none-declared |
-| factck-br | 1313 | 13 | 248 | 1052 | 0 | 0 | MIT |
-| bilstm-combined | 2157 | 0 | 0 | 0 | 2139 | 18 | Apache-2.0 |
+| source | read | too short | no verdict | new docs | already in an earlier source | repeated in the source | license | license basis |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
+| FakeBr-hf | 7200 | 0 | 0 | 7199 | 0 | 1 | Apache-2.0 | declared |
+| FakeTrue.Br-hf | 3582 | 0 | 0 | 3182 | 0 | 400 | Apache-2.0 | declared |
+| Fake.br-Corpus | 7200 | 0 | 0 | 0 | 7199 | 1 | MIT | maintainer-verified |
+| FakeRecogna | 11903 | 1 | 0 | 11902 | 0 | 0 | MIT | maintainer-verified |
+| FakeTrue.Br | 3582 | 0 | 0 | 0 | 3182 | 400 | MIT | maintainer-verified |
+| factck-br | 1313 | 13 | 248 | 1052 | 0 | 0 | MIT | declared |
+| bilstm-combined | 2157 | 0 | 0 | 0 | 2139 | 18 | Apache-2.0 | declared |
 
 ### the corpus
 
@@ -34,7 +34,7 @@ verdict: 23,335 documents. Fake.br enters once instead of twice (corpus_next.v1 
 | train | 19549 | 10325 | 9224 | 0 | 0 |
 | test | 3786 | 1938 | 1848 | 0 | 1746 |
 
-- corpus_hash sha256:12c173b9164b38d9956dbf4689dd3a93f1d9b876b95cc33d9e9b5a38ba76921e, 23335 docs
+- corpus_hash sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a, 23335 docs
 
 ### texts shared between sources
 
@@ -79,15 +79,15 @@ verdict: mpnet leads (nDCG@10 0.528), minilm is close behind at half the dimensi
 
 | model | preset | file MB | ndcg@10 | recall@10 | recall@100 | hit@1 | search ms/query |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| minilm | exact | 84.6 | 0.503 | 0.659 | 0.829 | 0.281 | 2.21 |
-| minilm | tiny | 22.8 | 0.503 | 0.658 | 0.828 | 0.281 | 1.52 |
-| minilm | hybrid | 54.4 | 0.503 | 0.659 | 0.829 | 0.281 | 2.67 |
-| mpnet | exact | 120.4 | 0.528 | 0.690 | 0.850 | 0.295 | 6.28 |
-| mpnet | tiny | 31.7 | 0.528 | 0.690 | 0.850 | 0.294 | 2.56 |
-| mpnet | hybrid | 90.2 | 0.528 | 0.690 | 0.850 | 0.295 | 3.66 |
-| potion | exact | 72.6 | 0.326 | 0.399 | 0.569 | 0.198 | 1.58 |
+| minilm | exact | 84.6 | 0.503 | 0.659 | 0.829 | 0.281 | 1.84 |
+| minilm | tiny | 22.8 | 0.503 | 0.658 | 0.828 | 0.281 | 0.76 |
+| minilm | hybrid | 54.4 | 0.503 | 0.659 | 0.829 | 0.281 | 2.31 |
+| mpnet | exact | 120.4 | 0.528 | 0.690 | 0.850 | 0.295 | 3.77 |
+| mpnet | tiny | 31.7 | 0.528 | 0.690 | 0.850 | 0.294 | 1.79 |
+| mpnet | hybrid | 90.2 | 0.528 | 0.690 | 0.850 | 0.295 | 4.34 |
+| potion | exact | 72.6 | 0.326 | 0.399 | 0.569 | 0.198 | 1.38 |
 | potion | tiny | 19.6 | 0.313 | 0.381 | 0.533 | 0.192 | 0.65 |
-| potion | hybrid | 42.3 | 0.327 | 0.401 | 0.572 | 0.198 | 2.13 |
+| potion | hybrid | 42.3 | 0.327 | 0.401 | 0.572 | 0.198 | 2.14 |
 
 - nDCG@10 is graded (2 for the document the headline was written for, 1 for its FakeTrue.Br pair); recall counts any judged document; hit@1 asks for the grade-2 document at rank 1.
 - Search time is the python call after the query vector exists, on the build machine; it leaves out embedding the query.
@@ -120,7 +120,7 @@ verdict: mpnet leads (nDCG@10 0.528), minilm is close behind at half the dimensi
 | potion | tiny | 0.337 | 0.409 | 0.496 | 0.265 |
 | potion | hybrid | 0.342 | 0.418 | 0.517 | 0.267 |
 
-provenance: measured; source: benchmark/tools/evaluate.py runs, scored against benchmark/queries/qrels.tsv; date: 2026-10-02; notes: silver qrels; every number is a lower bound shared by all rows (docs/methodology.md)
+provenance: measured; source: benchmark/tools/evaluate.py runs, scored against benchmark/queries/qrels.tsv; date: 2026-10-02; notes: corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; silver qrels, every number is a lower bound shared by all rows (docs/methodology.md)
 
 ## 03 stability: re-embedding, rebuilding, and agreement with exact
 
@@ -132,41 +132,41 @@ verdict: everything comes back the same on one machine: re-embedding gives bit-i
 
 | model | device | bit-identical | max abs diff |
 | --- | --- | --- | ---: |
-| potion | cpu | yes | 0.000000000 |
 | minilm | cpu | yes | 0.000000000 |
 | mpnet | cpu | yes | 0.000000000 |
+| potion | cpu | yes | 0.000000000 |
 
 ### rebuilding every file
 
 | build | file_hash (prefix) | same file_hash |
 | --- | --- | --- |
-| potion-exact | sha256:ab5bf432be08 | yes |
-| potion-tiny | sha256:3c57b09a1bfa | yes |
-| potion-hybrid | sha256:43b3a7ab6c1c | yes |
-| minilm-exact | sha256:21c1edc22e94 | yes |
-| minilm-tiny | sha256:8de85b87bd2b | yes |
-| minilm-hybrid | sha256:8e8889984e16 | yes |
-| mpnet-exact | sha256:5297c9560a89 | yes |
-| mpnet-tiny | sha256:d9fad55a0dbc | yes |
-| mpnet-hybrid | sha256:b0a5b9415a4e | yes |
+| minilm-exact | sha256:4bcb8e0fc38a | yes |
+| minilm-tiny | sha256:aaeea830ace4 | yes |
+| minilm-hybrid | sha256:3f05ac9de03f | yes |
+| mpnet-exact | sha256:c6ea967990ea | yes |
+| mpnet-tiny | sha256:d879cae6aced | yes |
+| mpnet-hybrid | sha256:428dbda30f41 | yes |
+| potion-exact | sha256:b044723b17b7 | yes |
+| potion-tiny | sha256:84b0861e1712 | yes |
+| potion-hybrid | sha256:172838f356e9 | yes |
 
 ### top-10 agreement with the exact preset of the same model
 
 | model | preset | top-10 overlap | same top-1 |
 | --- | --- | ---: | ---: |
-| potion | tiny | 0.930 | 0.933 |
-| potion | hybrid | 0.976 | 0.990 |
 | minilm | tiny | 0.995 | 0.993 |
 | minilm | hybrid | 1.000 | 1.000 |
 | mpnet | tiny | 0.994 | 0.995 |
 | mpnet | hybrid | 1.000 | 1.000 |
+| potion | tiny | 0.930 | 0.933 |
+| potion | hybrid | 0.976 | 0.990 |
 
-provenance: measured; source: benchmark/tools/stability.py; date: 2026-10-02; notes: re-embed sample: the first 1000 documents of the corpus
+provenance: measured; source: benchmark/tools/stability.py; date: 2026-10-02; notes: corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; re-embed sample: the first 1000 documents
 
 ## 04 clean-install: the README from a fresh clone
 
 hypothesis: the instructions in the README rebuild the same data and the same files on a machine that has only git, uv and the urna cli.
-method: `benchmark/tools/check_clean.sh` clones the repo into an empty directory, runs `uv sync`, fetches the seven sources into an empty FAKENEWS_DATA, prepares the corpus, checks the queries, and builds the potion and minilm `exact` files, comparing each identity with what the repo pins.
+method: `benchmark/tools/check_clean.sh` clones the repo into an empty directory, runs `uv sync`, fetches the seven sources into an empty FAKENEWS_DATA, prepares the corpus, checks the queries, and builds the potion and minilm `exact` files, comparing each identity with what the repo pins; `record_clean.py` writes this result only when every check passed, on the commit the checkout is at, for the prepared corpus.
 verdict: every identity came back: the seven tree hashes, the corpus_hash, the queries and qrels, and both file_hashes, the minilm one after downloading the model and embedding the corpus from scratch. The installed urna 0.5.1 validated both files. Same machine class as the builds (Apple M4, cpu); another platform may embed to different floats, which the build lock would show.
 
 ### every identity the repo pins, reproduced

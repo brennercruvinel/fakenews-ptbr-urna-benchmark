@@ -1,8 +1,9 @@
 {
+ "corpus_hash": "sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a",
  "experiment": "03-stability",
  "provenance": {
   "date": "2026-10-02",
-  "notes": "re-embed sample: the first 1000 documents of the corpus",
+  "notes": "corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; re-embed sample: the first 1000 documents",
   "source": "benchmark/tools/stability.py",
   "status": "measured"
  },
@@ -32,12 +33,6 @@
      "device": "cpu",
      "identical": true,
      "max_abs_diff": 0.0,
-     "model": "potion"
-    },
-    {
-     "device": "cpu",
-     "identical": true,
-     "max_abs_diff": 0.0,
      "model": "minilm"
     },
     {
@@ -45,6 +40,12 @@
      "identical": true,
      "max_abs_diff": 0.0,
      "model": "mpnet"
+    },
+    {
+     "device": "cpu",
+     "identical": true,
+     "max_abs_diff": 0.0,
+     "model": "potion"
     }
    ],
    "title": "re-embedding the same documents"
@@ -66,48 +67,48 @@
    ],
    "rows": [
     {
-     "build": "potion-exact",
-     "file_hash": "sha256:ab5bf432be08",
-     "same": true
-    },
-    {
-     "build": "potion-tiny",
-     "file_hash": "sha256:3c57b09a1bfa",
-     "same": true
-    },
-    {
-     "build": "potion-hybrid",
-     "file_hash": "sha256:43b3a7ab6c1c",
-     "same": true
-    },
-    {
      "build": "minilm-exact",
-     "file_hash": "sha256:21c1edc22e94",
+     "file_hash": "sha256:4bcb8e0fc38a",
      "same": true
     },
     {
      "build": "minilm-tiny",
-     "file_hash": "sha256:8de85b87bd2b",
+     "file_hash": "sha256:aaeea830ace4",
      "same": true
     },
     {
      "build": "minilm-hybrid",
-     "file_hash": "sha256:8e8889984e16",
+     "file_hash": "sha256:3f05ac9de03f",
      "same": true
     },
     {
      "build": "mpnet-exact",
-     "file_hash": "sha256:5297c9560a89",
+     "file_hash": "sha256:c6ea967990ea",
      "same": true
     },
     {
      "build": "mpnet-tiny",
-     "file_hash": "sha256:d9fad55a0dbc",
+     "file_hash": "sha256:d879cae6aced",
      "same": true
     },
     {
      "build": "mpnet-hybrid",
-     "file_hash": "sha256:b0a5b9415a4e",
+     "file_hash": "sha256:428dbda30f41",
+     "same": true
+    },
+    {
+     "build": "potion-exact",
+     "file_hash": "sha256:b044723b17b7",
+     "same": true
+    },
+    {
+     "build": "potion-tiny",
+     "file_hash": "sha256:84b0861e1712",
+     "same": true
+    },
+    {
+     "build": "potion-hybrid",
+     "file_hash": "sha256:172838f356e9",
      "same": true
     }
    ],
@@ -136,18 +137,6 @@
    ],
    "rows": [
     {
-     "model": "potion",
-     "overlap": 0.9299500192233757,
-     "preset": "tiny",
-     "same_top1": 0.9334871203383314
-    },
-    {
-     "model": "potion",
-     "overlap": 0.9761245674740485,
-     "preset": "hybrid",
-     "same_top1": 0.9903883121876201
-    },
-    {
      "model": "minilm",
      "overlap": 0.9951557093425604,
      "preset": "tiny",
@@ -170,6 +159,18 @@
      "overlap": 0.9999615532487505,
      "preset": "hybrid",
      "same_top1": 1.0
+    },
+    {
+     "model": "potion",
+     "overlap": 0.9299500192233757,
+     "preset": "tiny",
+     "same_top1": 0.9334871203383314
+    },
+    {
+     "model": "potion",
+     "overlap": 0.9761245674740485,
+     "preset": "hybrid",
+     "same_top1": 0.9903883121876201
     }
    ],
    "title": "top-10 agreement with the exact preset of the same model"

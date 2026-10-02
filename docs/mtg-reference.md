@@ -12,7 +12,7 @@ This repo follows the layout of [mtg-urna-benchmark](https://github.com/brennerc
 ## Left behind
 
 - `URNA_REPO`. Every MTG tool needs a checkout of Urna, through `_bench_env.urna_repo()`, because `urna build --spec` runs `python/tools/urna_forge.py` from the checkout. Here the build uses `urna.build` from the published wheel, and no tool reads a checkout.
-- `urna build --spec`. The forge is not in the installed payload, and Urna 0.5.1's registry has no multilingual text model. `benchmark/tools/build.py` takes its place; the model list is `profiles/models.toml`.
+- `urna build --spec`. The forge is not in the installed payload, so it needs a checkout. Urna's `main` now registers `minilm-multilingual`, but mpnet is outside the registry and the checkout requirement stays. `benchmark/tools/build.py` takes its place on the published wheel; the model list is `profiles/models.toml`.
 - The `NEST` magic and the 0.4.0 instructions. The MTG files were built before the rename and its README still asks for a v0.4.0 checkout; nothing here predates 0.5.
 - `SPELLBOOK_DATA` and other legacy aliases. One variable, `FAKENEWS_DATA`.
 

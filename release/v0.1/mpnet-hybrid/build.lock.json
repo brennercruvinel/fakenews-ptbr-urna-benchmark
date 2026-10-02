@@ -9,7 +9,7 @@
   "source_uri": "fakenews-ptbr://doc/<doc_id hex>"
  },
  "corpus": {
-  "corpus_hash": "sha256:12c173b9164b38d9956dbf4689dd3a93f1d9b876b95cc33d9e9b5a38ba76921e",
+  "corpus_hash": "sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a",
   "n_docs": 23335,
   "source_tree_hashes": {
    "Fake.br-Corpus": "sha256:f06c33d1b81ce48bc28b4b12825f24b4ea02c4e27d1e9c4098d578326e948b8f",
@@ -69,8 +69,8 @@
  },
  "output": {
   "bytes": 90217591,
-  "content_hash": "sha256:2de770351ab690f6be86337943192affadb227a87a190cda6305e43793908ff7",
-  "file_hash": "sha256:b0a5b9415a4e518128c888c03d64b3a1689247e368181bc0b11ffc8d82c7e905",
+  "content_hash": "sha256:b0e7e5e6fdb3fc0dcf94fc23e659df25c927cef4c79db732d0d25de7e8a37505",
+  "file_hash": "sha256:428dbda30f41fdbf0f38e3a7d83c76c738a68a69dc04c9753f774d5e0f27e83d",
   "n_chunks": 23335
  }
 }

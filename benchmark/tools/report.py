@@ -30,6 +30,10 @@ def main() -> int:
     runs = [json.loads(p.read_text()) for p in sorted(env.RUNS.glob("*.json"))]
     if not runs:
         env.die("no runs under benchmark/runs; run evaluate.py first")
+    want = env.corpus_hash()
+    stale = [r["build"] for r in runs if r.get("corpus_hash") != want]
+    if stale:
+        env.die(f"runs from another corpus version: {', '.join(stale)}; rebuild and re-evaluate them")
     models = [m["name"] for m in env.load_toml(env.MODELS_TOML)["model"]]
     runs.sort(key=lambda r: (models.index(r["model"]) if r["model"] in models else 99, ORDER.get(r["preset"], 9)))
     n = runs[0]["n_queries"]
@@ -68,11 +72,12 @@ def main() -> int:
     doc = {
         "experiment": EXPERIMENT,
         "title": "retrieval quality per model and preset",
+        "corpus_hash": want,
         "provenance": {
             "status": "measured",
             "source": "benchmark/tools/evaluate.py runs, scored against benchmark/queries/qrels.tsv",
             "date": dt.date.today().isoformat(),
-            "notes": "silver qrels; every number is a lower bound shared by all rows (docs/methodology.md)",
+            "notes": f"corpus {want}; silver qrels, every number is a lower bound shared by all rows (docs/methodology.md)",
         },
         "tables": [main_table, *fam_tables],
     }

@@ -1,5 +1,5 @@
-content_hash = sha256:05a3b326a17afb52d973b6608eb8f579a290d07466ad05f74dfc7835afa68183
-file_hash = sha256:ab5bf432be08f9ac9d02e2b4d50c262811cc0aaaec5e1ea39aad00107d66e8aa
+content_hash = sha256:efda9d323e2e444fb967fb6b9f849e03d36d1701273fdaa9e9e1521024c7a04f
+file_hash = sha256:b044723b17b706023cda8575d13d22e978ba2e1b518e97ab579aba77aac830be
 chunker_version = fakenews-ptbr/0.1
 title = fakenews-ptbr potion exact
 n_chunks = 23335

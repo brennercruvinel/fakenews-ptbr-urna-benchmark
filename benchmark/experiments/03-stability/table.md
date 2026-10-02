@@ -6,33 +6,33 @@
 
 | model | device | bit-identical | max abs diff |
 | --- | --- | --- | ---: |
-| potion | cpu | yes | 0.000000000 |
 | minilm | cpu | yes | 0.000000000 |
 | mpnet | cpu | yes | 0.000000000 |
+| potion | cpu | yes | 0.000000000 |
 
 ### rebuilding every file
 
 | build | file_hash (prefix) | same file_hash |
 | --- | --- | --- |
-| potion-exact | sha256:ab5bf432be08 | yes |
-| potion-tiny | sha256:3c57b09a1bfa | yes |
-| potion-hybrid | sha256:43b3a7ab6c1c | yes |
-| minilm-exact | sha256:21c1edc22e94 | yes |
-| minilm-tiny | sha256:8de85b87bd2b | yes |
-| minilm-hybrid | sha256:8e8889984e16 | yes |
-| mpnet-exact | sha256:5297c9560a89 | yes |
-| mpnet-tiny | sha256:d9fad55a0dbc | yes |
-| mpnet-hybrid | sha256:b0a5b9415a4e | yes |
+| minilm-exact | sha256:4bcb8e0fc38a | yes |
+| minilm-tiny | sha256:aaeea830ace4 | yes |
+| minilm-hybrid | sha256:3f05ac9de03f | yes |
+| mpnet-exact | sha256:c6ea967990ea | yes |
+| mpnet-tiny | sha256:d879cae6aced | yes |
+| mpnet-hybrid | sha256:428dbda30f41 | yes |
+| potion-exact | sha256:b044723b17b7 | yes |
+| potion-tiny | sha256:84b0861e1712 | yes |
+| potion-hybrid | sha256:172838f356e9 | yes |
 
 ### top-10 agreement with the exact preset of the same model
 
 | model | preset | top-10 overlap | same top-1 |
 | --- | --- | ---: | ---: |
-| potion | tiny | 0.930 | 0.933 |
-| potion | hybrid | 0.976 | 0.990 |
 | minilm | tiny | 0.995 | 0.993 |
 | minilm | hybrid | 1.000 | 1.000 |
 | mpnet | tiny | 0.994 | 0.995 |
 | mpnet | hybrid | 1.000 | 1.000 |
+| potion | tiny | 0.930 | 0.933 |
+| potion | hybrid | 0.976 | 0.990 |
 
-provenance: measured; source: benchmark/tools/stability.py; date: 2026-10-02; notes: re-embed sample: the first 1000 documents of the corpus
+provenance: measured; source: benchmark/tools/stability.py; date: 2026-10-02; notes: corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; re-embed sample: the first 1000 documents

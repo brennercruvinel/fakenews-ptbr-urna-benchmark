@@ -1,9 +1,9 @@
 {
  "inspect": {
   "blobs": null,
-  "content_hash": "sha256:230343ff3820673c8389c11839f93dacf2cdfb14f1c6ec91ffc76357d5c17d36",
+  "content_hash": "sha256:ebe7e50273f46c80e5c7a9b13b22518aff9102381f0287c820c4b27960d38bde",
   "embedding_dim": 768,
-  "file_hash": "sha256:d9fad55a0dbc577aa0a80001197fe1c7748772b0f72750b7eb8f43f35c9a398b",
+  "file_hash": "sha256:d879cae6aced5bd295b887bd57837386c6b135579f6e598080aa39101450e37f",
   "file_size": 31724269,
   "format_version": 1,
   "magic": "URNA",
@@ -23,7 +23,7 @@
    "embedding_model": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
    "format_version": 1,
    "index_type": "hnsw",
-   "license": "mixed (per-source, see docs/sources.md)",
+   "license": "MIT and Apache-2.0, per source (docs/sources.md)",
    "metric": "ip",
    "model_hash": "sha256:852fe52bc465f5854307218daf815fb26e3cb507ba9079563c1514acd4fb820f",
    "n_chunks": 23335,
@@ -71,7 +71,7 @@
     "size": 18014628
    },
    {
-    "checksum": "08ec5fd4e8a733ec",
+    "checksum": "0c29fdf9d05cc9e5",
     "encoding": 1,
     "name": "provenance",
     "offset": 30443968,
@@ -101,7 +101,7 @@
   "version_minor": 0
  },
  "timings_s": {
-  "build": 104.8,
+  "build": 96.7,
   "embed": 0.0
  }
 }

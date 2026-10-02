@@ -4,15 +4,15 @@
 
 ### what each source contributed, in source order
 
-| source | read | too short | no verdict | new docs | already in an earlier source | repeated in the source | license |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| FakeBr-hf | 7200 | 0 | 0 | 7199 | 0 | 1 | Apache-2.0 |
-| FakeTrue.Br-hf | 3582 | 0 | 0 | 3182 | 0 | 400 | Apache-2.0 |
-| Fake.br-Corpus | 7200 | 0 | 0 | 0 | 7199 | 1 | none-declared |
-| FakeRecogna | 11903 | 1 | 0 | 11902 | 0 | 0 | none-declared |
-| FakeTrue.Br | 3582 | 0 | 0 | 0 | 3182 | 400 | none-declared |
-| factck-br | 1313 | 13 | 248 | 1052 | 0 | 0 | MIT |
-| bilstm-combined | 2157 | 0 | 0 | 0 | 2139 | 18 | Apache-2.0 |
+| source | read | too short | no verdict | new docs | already in an earlier source | repeated in the source | license | license basis |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
+| FakeBr-hf | 7200 | 0 | 0 | 7199 | 0 | 1 | Apache-2.0 | declared |
+| FakeTrue.Br-hf | 3582 | 0 | 0 | 3182 | 0 | 400 | Apache-2.0 | declared |
+| Fake.br-Corpus | 7200 | 0 | 0 | 0 | 7199 | 1 | MIT | maintainer-verified |
+| FakeRecogna | 11903 | 1 | 0 | 11902 | 0 | 0 | MIT | maintainer-verified |
+| FakeTrue.Br | 3582 | 0 | 0 | 0 | 3182 | 400 | MIT | maintainer-verified |
+| factck-br | 1313 | 13 | 248 | 1052 | 0 | 0 | MIT | declared |
+| bilstm-combined | 2157 | 0 | 0 | 0 | 2139 | 18 | Apache-2.0 | declared |
 
 ### the corpus
 
@@ -21,7 +21,7 @@
 | train | 19549 | 10325 | 9224 | 0 | 0 |
 | test | 3786 | 1938 | 1848 | 0 | 1746 |
 
-- corpus_hash sha256:12c173b9164b38d9956dbf4689dd3a93f1d9b876b95cc33d9e9b5a38ba76921e, 23335 docs
+- corpus_hash sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a, 23335 docs
 
 ### texts shared between sources
 

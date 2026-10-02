@@ -5,8 +5,14 @@
 # files       paths (or directory prefixes ending in /) taken from that revision
 # tree_hash   sha256 over the sorted "path sha256" lines of the fetched files;
 #             fetch_sources.py refuses a fetch that does not match
-# license     as declared upstream at that revision; "none-declared" when the
-#             upstream states none (see docs/sources.md for what that means)
+# license     the redistribution license of the texts
+# license_basis  "declared": stated in the upstream repo or card at that revision
+#             "maintainer-verified": the upstream carries no license file; the
+#             terms were verified by the maintainer
+# license_evidence  required for "maintainer-verified": where the verification can be
+#             checked (a link to the author's grant, an archived message, a document
+#             in docs/license-evidence/). A public repository without a license file
+#             grants no license by itself, so an empty field blocks promote and export.
 
 [[source]]
 name = "FakeBr-hf"
@@ -16,6 +22,7 @@ revision = "062d17d3588cbccaecd052af955fc633ba4c8f95"
 files = ["corpus_train_df.parquet", "corpus_test_df.parquet", "README.md"]
 tree_hash = "sha256:ad17e27bedf0b9b3272b7952701eccd125fa1c68fa654271622fb930bbc95719"
 license = "Apache-2.0"
+license_basis = "declared"
 
 [[source]]
 name = "FakeTrue.Br-hf"
@@ -25,6 +32,7 @@ revision = "56f1504e80ba2d348c07e230ea418348571479cd"
 files = ["corpus_train_df.parquet", "corpus_test_df.parquet", "README.md"]
 tree_hash = "sha256:aa245eef07b3af670078817f990999b0a63ebfc7a6697a166acb546ee3d0852d"
 license = "Apache-2.0"
+license_basis = "declared"
 
 [[source]]
 name = "Fake.br-Corpus"
@@ -33,7 +41,9 @@ repo = "roneysco/Fake.br-Corpus"
 revision = "780f5516c4ae070761632d98ac3368f3ded09d35"
 files = ["full_texts/", "README.md"]
 tree_hash = "sha256:f06c33d1b81ce48bc28b4b12825f24b4ea02c4e27d1e9c4098d578326e948b8f"
-license = "none-declared"
+license = "MIT"
+license_basis = "maintainer-verified"
+license_evidence = ""
 
 [[source]]
 name = "FakeRecogna"
@@ -42,7 +52,9 @@ repo = "Gabriel-Lino-Garcia/FakeRecogna"
 revision = "58f8f6ebd419970527875ba243c9c891781747cd"
 files = ["dataset/", "README.md"]
 tree_hash = "sha256:6eef7f883ff7b2063097c2aa0c7456147ea8952084ceac2d9c68c107223087aa"
-license = "none-declared"
+license = "MIT"
+license_basis = "maintainer-verified"
+license_evidence = ""
 
 [[source]]
 name = "FakeTrue.Br"
@@ -51,7 +63,9 @@ repo = "jpchav98/FakeTrue.Br"
 revision = "37cdd5f2ac697a7cd3d678373f29a9d731a13e02"
 files = ["FakeTrueBr_corpus.csv", "README.md"]
 tree_hash = "sha256:d3716e457632b43231d98bd9428eb9f55a8ce8db57a18af35c55b40234b38f8d"
-license = "none-declared"
+license = "MIT"
+license_basis = "maintainer-verified"
+license_evidence = ""
 
 [[source]]
 name = "factck-br"
@@ -61,6 +75,7 @@ revision = "57e25d742ea14cb912069d3f6e9a0333477bc9c3"
 files = ["FACTCKBR.tsv", "LICENSE", "README.md"]
 tree_hash = "sha256:b7911cdbb7e266c3a5b0b60b29dce70f09ab04ebf8cc1bac88fac52b504f497a"
 license = "MIT"
+license_basis = "declared"
 
 [[source]]
 name = "bilstm-combined"
@@ -70,3 +85,4 @@ revision = "edd55e97353f1b924b7157b04a2bba593586d52a"
 files = ["corpus/corpus_test_df.parquet", "README.md"]
 tree_hash = "sha256:217646a01d03141298bd263fa55b58ab8c02121887980fb538b8e61b37f8ddc2"
 license = "Apache-2.0"
+license_basis = "declared"

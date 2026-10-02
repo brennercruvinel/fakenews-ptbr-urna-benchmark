@@ -6,7 +6,7 @@ Seven public Brazilian Portuguese fake-news datasets, deduplicated into one corp
 
 This is the rebuildable successor of the text corpus in [Urna](https://github.com/hoffresearch/urna). Urna's regression gate measures `data/corpus_next.v1.urna`, a file that can no longer be rebuilt: its loader read csv files and a mirror that are gone upstream. Here every source is pinned to a revision and a tree hash, the build runs on the published `urna` wheel without a checkout, and the embedder is yours to pick.
 
-> Status: v0.1, private. The Hugging Face dataset stays private until the redistribution item below is closed.
+> Status: v0.1, private. Every source is licensed MIT or Apache-2.0; the evidence for three maintainer-verified licenses is still to be recorded ([docs/sources.md](docs/sources.md)).
 
 ## Pick a model
 
@@ -14,8 +14,8 @@ Three example embedders, all on the same corpus and the same queries. None is a 
 
 | Model | Dim | nDCG@10 | recall@10 | Embed the corpus (CPU) | Query from an installed Urna |
 |---|---:|---:|---:|---:|---|
-| `mpnet` (paraphrase-multilingual-mpnet-base-v2) | 768 | 0.528 | 0.690 | about 7 min | Urna after 0.5.1, `--model-path` |
-| `minilm` (paraphrase-multilingual-MiniLM-L12-v2) | 384 | 0.503 | 0.660 | about 3 min | Urna after 0.5.1, `--model-path` |
+| `mpnet` (paraphrase-multilingual-mpnet-base-v2) | 768 | 0.528 | 0.690 | about 7 min | the release after 0.5.1, `--model-path` |
+| `minilm` (paraphrase-multilingual-MiniLM-L12-v2) | 384 | 0.503 | 0.660 | about 3 min | the release after 0.5.1, `--model-path` |
 | `potion` (potion-base-8M, bundled with the wheel) | 256 | 0.326 | 0.399 | seconds | Urna 0.5.1, out of the box |
 
 Numbers are for the `exact` preset on an Apple M4 CPU; the `tiny` and `hybrid` presets of each model are in [RESULTS.md](RESULTS.md). The two multilingual models read the first 128 tokens of each document. Potion is an English static table: Portuguese rides English subwords, and it shows.
@@ -47,7 +47,7 @@ urna retrieve candidates/minilm-exact/fakenews.urna "vacina altera o dna" -k 5 -
   --model-path "$FAKENEWS_DATA/models/minilm-e8f8c211226b"
 ```
 
-The potion file answers any Urna 0.5.1 install. The sentence-transformers files need the query route Urna adds after 0.5.1, `torch` and `sentence-transformers` in Urna's venv, and `--model-path` pointing at the pinned snapshot `build.py` downloaded; the [dataset card](https://huggingface.co/datasets/brennercruvinel/fakenews-ptbr-urna-benchmark) has the full list. From Python, `urna.open(path).search(vector, k)` takes a vector embedded by the same model.
+The potion file answers any Urna 0.5.1 install. The sentence-transformers files need the query route merged into Urna's `main` in [#264](https://github.com/hoffresearch/urna/pull/264), which ships with the release after 0.5.1: run `urna setup --yes` with that binary (it replaces a 0.5.1 payload and keeps the venv), add `torch` and `sentence-transformers` to Urna's venv, and pass `--model-path` pointing at the pinned snapshot `build.py` downloaded. When something is missing, the query says what and prints the fix: the install line for the interpreter it ran, or the missing weights. The [dataset card](https://huggingface.co/datasets/brennercruvinel/fakenews-ptbr-urna-benchmark) has the full steps. From Python, `urna.open(path).search(vector, k)` takes a vector embedded by the same model.
 
 ## Documents, chunks and conflicts
 
@@ -100,8 +100,9 @@ The corpus, the chunk map, the queries and the qrels as Parquet, and every `.urn
 - [x] Every source in `sources/sources.toml` has a pinned revision, a tree hash and its declared license.
 - [x] The embedder is the user's choice, from pinned examples.
 - [x] The gate baseline stays the frozen `corpus_next.v1.urna`, identified by its `file_hash`; [docs/urna-gate.md](docs/urna-gate.md) says why it cannot be rebuilt.
-- [ ] Written permission from the authors of Fake.br-Corpus, FakeRecogna and FakeTrue.Br, which declare no license, or a v0.1 published without their texts. [docs/sources.md](docs/sources.md) has the details.
+- [x] Every source has a license: Apache-2.0 or MIT as declared upstream, and MIT for Fake.br-Corpus, FakeRecogna and FakeTrue.Br as verified by the maintainer, whose repos carry no license file.
+- [ ] Each of those three verifications has a checkable source in `license_evidence` ([docs/sources.md](docs/sources.md)).
 
 ## License
 
-MIT (`LICENSE`) covers the code, the recipes and the results written in this repo. It does not cover the corpus text, nor the queries, which are headlines and titles taken from the sources: those keep the terms of their source, listed in `docs/sources.md`, and a built `.urna` carries the most restrictive of them.
+MIT (`LICENSE`) covers the code, the recipes and the results written in this repo. The corpus text and the queries, which are headlines and titles taken from the sources, keep the license of their source: MIT or Apache-2.0, per source in `docs/sources.md` and per row in the corpus. A built `.urna` carries both, with the attribution each source asks for.

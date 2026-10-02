@@ -47,6 +47,18 @@ def prepared_dir() -> Path:
     return data_root() / "prepared"
 
 
+def corpus_hash() -> str:
+    """The corpus_hash of the prepared corpus: the one version every build, run and result must share."""
+    return json.loads((prepared_dir() / "prepare.json").read_text())["corpus_hash"]
+
+
+def require_corpus(found: str, what: str) -> None:
+    """Refuse an artifact built from another version of the corpus."""
+    want = corpus_hash()
+    if found != want:
+        die(f"{what} was built from corpus {found[:19]}..., the prepared corpus is {want[:19]}...; rebuild it")
+
+
 def load_toml(path: Path) -> dict:
     with path.open("rb") as f:
         return tomllib.load(f)
@@ -54,6 +66,24 @@ def load_toml(path: Path) -> dict:
 
 def sources() -> list[dict]:
     return load_toml(SOURCES_TOML)["source"]
+
+
+def unproven_licenses() -> list[str]:
+    """Sources whose license rests on the maintainer's verification with no evidence recorded."""
+    return [
+        s["name"]
+        for s in sources()
+        if s.get("license_basis") == "maintainer-verified" and not s.get("license_evidence", "").strip()
+    ]
+
+
+def require_license_evidence() -> None:
+    missing = unproven_licenses()
+    if missing:
+        die(
+            f"no license_evidence for {', '.join(missing)} in sources/sources.toml; "
+            "a maintainer-verified license needs a checkable source before anything is published"
+        )
 
 
 def sha256_file(path: Path) -> str:

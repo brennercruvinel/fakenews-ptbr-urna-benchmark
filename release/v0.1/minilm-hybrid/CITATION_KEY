@@ -1,5 +1,5 @@
-content_hash = sha256:95208653fceea51d51e9f6b231ae3851873e77b87332fed4e64c30e850ce5ecb
-file_hash = sha256:8e8889984e164aad94455a8dd24ab42704b4386b6ab771edde9f929e2cf127c5
+content_hash = sha256:7ef9457974944ba7d6f8ef076ca8aff8453e3ff37ba3860c69fb31a7a28bcddb
+file_hash = sha256:3f05ac9de03f343f4bba815a1eb053e84b28e5302ff1bab8060f4ee770f1ac04
 chunker_version = fakenews-ptbr/0.1
 title = fakenews-ptbr minilm hybrid
 n_chunks = 23335

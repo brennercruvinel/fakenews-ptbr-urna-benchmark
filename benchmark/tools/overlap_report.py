@@ -39,6 +39,7 @@ def source_table(prep: dict) -> dict:
                 "dup_earlier": s.get("dup_of_earlier_source", 0),
                 "dup_within": s.get("dup_within_source", 0),
                 "license": src["license"],
+                "basis": src.get("license_basis", ""),
             }
         )
     cols = [
@@ -50,6 +51,7 @@ def source_table(prep: dict) -> dict:
         {"key": "dup_earlier", "label": "already in an earlier source", "fmt": "int"},
         {"key": "dup_within", "label": "repeated in the source", "fmt": "int"},
         {"key": "license", "label": "license"},
+        {"key": "basis", "label": "license basis"},
     ]
     return {"title": "what each source contributed, in source order", "columns": cols, "rows": rows}
 
@@ -129,6 +131,7 @@ def main() -> int:
     doc = {
         "experiment": EXPERIMENT,
         "title": "seven sources, one deduplicated corpus",
+        "corpus_hash": prep["corpus_hash"],
         "provenance": {
             "status": "measured",
             "source": "benchmark/tools/overlap_report.py over prepare.py output",

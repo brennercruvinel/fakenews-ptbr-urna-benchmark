@@ -6,15 +6,15 @@
 
 | model | preset | file MB | ndcg@10 | recall@10 | recall@100 | hit@1 | search ms/query |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| minilm | exact | 84.6 | 0.503 | 0.659 | 0.829 | 0.281 | 2.21 |
-| minilm | tiny | 22.8 | 0.503 | 0.658 | 0.828 | 0.281 | 1.52 |
-| minilm | hybrid | 54.4 | 0.503 | 0.659 | 0.829 | 0.281 | 2.67 |
-| mpnet | exact | 120.4 | 0.528 | 0.690 | 0.850 | 0.295 | 6.28 |
-| mpnet | tiny | 31.7 | 0.528 | 0.690 | 0.850 | 0.294 | 2.56 |
-| mpnet | hybrid | 90.2 | 0.528 | 0.690 | 0.850 | 0.295 | 3.66 |
-| potion | exact | 72.6 | 0.326 | 0.399 | 0.569 | 0.198 | 1.58 |
+| minilm | exact | 84.6 | 0.503 | 0.659 | 0.829 | 0.281 | 1.84 |
+| minilm | tiny | 22.8 | 0.503 | 0.658 | 0.828 | 0.281 | 0.76 |
+| minilm | hybrid | 54.4 | 0.503 | 0.659 | 0.829 | 0.281 | 2.31 |
+| mpnet | exact | 120.4 | 0.528 | 0.690 | 0.850 | 0.295 | 3.77 |
+| mpnet | tiny | 31.7 | 0.528 | 0.690 | 0.850 | 0.294 | 1.79 |
+| mpnet | hybrid | 90.2 | 0.528 | 0.690 | 0.850 | 0.295 | 4.34 |
+| potion | exact | 72.6 | 0.326 | 0.399 | 0.569 | 0.198 | 1.38 |
 | potion | tiny | 19.6 | 0.313 | 0.381 | 0.533 | 0.192 | 0.65 |
-| potion | hybrid | 42.3 | 0.327 | 0.401 | 0.572 | 0.198 | 2.13 |
+| potion | hybrid | 42.3 | 0.327 | 0.401 | 0.572 | 0.198 | 2.14 |
 
 - nDCG@10 is graded (2 for the document the headline was written for, 1 for its FakeTrue.Br pair); recall counts any judged document; hit@1 asks for the grade-2 document at rank 1.
 - Search time is the python call after the query vector exists, on the build machine; it leaves out embedding the query.
@@ -47,4 +47,4 @@
 | potion | tiny | 0.337 | 0.409 | 0.496 | 0.265 |
 | potion | hybrid | 0.342 | 0.418 | 0.517 | 0.267 |
 
-provenance: measured; source: benchmark/tools/evaluate.py runs, scored against benchmark/queries/qrels.tsv; date: 2026-10-02; notes: silver qrels; every number is a lower bound shared by all rows (docs/methodology.md)
+provenance: measured; source: benchmark/tools/evaluate.py runs, scored against benchmark/queries/qrels.tsv; date: 2026-10-02; notes: corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; silver qrels, every number is a lower bound shared by all rows (docs/methodology.md)
