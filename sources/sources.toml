@@ -1,0 +1,58 @@
+# one entry per upstream dataset. revision and license are filled in task 5;
+# fetch_sources.py refuses an entry with an empty revision.
+
+[[source]]
+name = "FakeBr-hf"
+kind = "hf-dataset"
+repo = "vzani/corpus-fake-br"
+revision = ""
+license = ""
+splits = ["train", "test"]
+
+[[source]]
+name = "FakeTrue.Br-hf"
+kind = "hf-dataset"
+repo = "vzani/corpus-faketrue-br"
+revision = ""
+license = ""
+splits = ["train", "test"]
+
+[[source]]
+name = "Fake.br-Corpus"
+kind = "git"
+repo = "https://github.com/roneysco/Fake.br-Corpus"
+revision = ""
+license = ""
+splits = []
+
+[[source]]
+name = "FakeRecogna"
+kind = "git"
+repo = "https://github.com/Gabriel-Lino-Garcia/FakeRecogna"
+revision = ""
+license = ""
+splits = []
+
+[[source]]
+name = "FakeTrue.Br"
+kind = "git"
+repo = "https://github.com/jpchav98/FakeTrue.Br"
+revision = ""
+license = ""
+splits = []
+
+[[source]]
+name = "factck-br"
+kind = "git"
+repo = "https://github.com/opit-research/factck-br"
+revision = ""
+license = ""
+splits = []
+
+[[source]]
+name = "bilstm-combined"
+kind = "hf-model"
+repo = "vzani/portuguese-fake-news-classifier-bilstm-combined"
+revision = ""
+license = ""
+splits = ["test"]

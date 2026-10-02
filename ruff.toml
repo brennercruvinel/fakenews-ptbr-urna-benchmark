@@ -1,0 +1,9 @@
+# lint config for benchmark/tools; the ci gate is `ruff check benchmark/tools`.
+target-version = "py312"
+line-length = 120
+
+[lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[lint.isort]
+known-first-party = ["_bench_env"]

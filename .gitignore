@@ -1,0 +1,23 @@
+# heavy artifacts: never tracked, hosted on hugging face
+*.urna
+*.parquet
+*.npz
+
+# upstream datasets and prepared corpus live outside git
+data/
+items.jsonl.gz
+corpus.jsonl
+
+# forge build state and caches
+.cache/
+.forge-state/
+.tmp/
+
+# build outputs and candidates live outside git
+benchmark/runs/
+candidates/
+
+# os and python noise
+.DS_Store
+__pycache__/
+.venv/

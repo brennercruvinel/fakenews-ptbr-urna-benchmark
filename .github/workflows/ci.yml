@@ -1,0 +1,42 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: install ruff
+        run: pip install ruff
+
+      - name: lint the bench tools
+        run: ruff check benchmark/tools
+
+      - name: rendered report is up to date
+        run: |
+          if [ -f benchmark/tools/render_report.py ]; then
+            python benchmark/tools/render_report.py --check
+          fi
+
+      - name: no tracked file names a machine
+        run: |
+          hits=$(git ls-files | xargs grep -l -e '/Users''/' -e '/home''/' -e 'Library/Application'' Support' -e 'nn/D''ev' || true)
+          dashes=$(git ls-files | xargs grep -l "$(printf '\342\200\224')" || true)
+          if [ -n "$dashes" ]; then
+            echo "em dash in tracked files:"
+            echo "$dashes"
+            exit 1
+          fi
+          if [ -n "$hits" ]; then
+            echo "machine-local paths in tracked files:"
+            echo "$hits"
+            exit 1
+          fi
