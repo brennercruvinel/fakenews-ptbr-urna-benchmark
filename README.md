@@ -85,6 +85,10 @@ The corpus as Parquet and the `.urna` files are on Hugging Face: [brennercruvine
 - Redistribution. Several upstreams are academic releases with no explicit grant, and factck-br may be share-alike. The Hugging Face dataset stays private until each license is confirmed in `docs/sources.md`.
 - The gate baseline. Either this build reproduces the current `file_hash` of `corpus_next.v1.urna`, or the gate moves to the v0.1 release and the old hash is kept as history.
 
+## Citation
+
+`CITATION.cff` cites Urna, the one reference for this benchmark and its corpus. Cite the upstream datasets when you use their rows.
+
 ## License
 
 Code, recipes, queries and results: MIT (`LICENSE`). The corpus text belongs to its upstream datasets and keeps their terms, listed per source in `docs/sources.md`; a built `.urna` carries the most restrictive of them.
