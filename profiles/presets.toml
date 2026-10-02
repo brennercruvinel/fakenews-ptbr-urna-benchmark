@@ -1,0 +1,20 @@
+# Storage presets, passed to urna.build as they are. The vectors are the same
+# for every preset of a model; only how the file stores and indexes them changes.
+
+[[preset]]
+name = "exact"
+kwargs = { preset = "exact" }
+search = "exact"
+note = "raw text, float32 vectors, brute-force search: the reference for ranking agreement"
+
+[[preset]]
+name = "tiny"
+kwargs = { preset = "tiny" }
+search = "ann"
+note = "zstd text, int8 vectors, hnsw; exact rerank of the candidates"
+
+[[preset]]
+name = "hybrid"
+kwargs = { preset = "hybrid" }
+search = "hybrid"
+note = "zstd text, float32 vectors, hnsw and bm25 fused"

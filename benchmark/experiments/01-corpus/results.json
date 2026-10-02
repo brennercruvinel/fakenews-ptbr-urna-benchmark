@@ -1,0 +1,337 @@
+{
+ "experiment": "01-corpus",
+ "provenance": {
+  "date": "2026-10-02",
+  "notes": "sources at the revisions and tree hashes pinned in sources/sources.toml",
+  "source": "benchmark/tools/overlap_report.py over prepare.py output",
+  "status": "measured"
+ },
+ "tables": [
+  {
+   "columns": [
+    {
+     "key": "source",
+     "label": "source"
+    },
+    {
+     "fmt": "int",
+     "key": "read",
+     "label": "read"
+    },
+    {
+     "fmt": "int",
+     "key": "dropped_short",
+     "label": "too short"
+    },
+    {
+     "fmt": "int",
+     "key": "dropped_no_verdict",
+     "label": "no verdict"
+    },
+    {
+     "fmt": "int",
+     "key": "new_docs",
+     "label": "new docs"
+    },
+    {
+     "fmt": "int",
+     "key": "dup_earlier",
+     "label": "already in an earlier source"
+    },
+    {
+     "fmt": "int",
+     "key": "dup_within",
+     "label": "repeated in the source"
+    },
+    {
+     "key": "license",
+     "label": "license"
+    }
+   ],
+   "rows": [
+    {
+     "dropped_no_verdict": 0,
+     "dropped_short": 0,
+     "dup_earlier": 0,
+     "dup_within": 1,
+     "license": "Apache-2.0",
+     "new_docs": 7199,
+     "read": 7200,
+     "source": "FakeBr-hf"
+    },
+    {
+     "dropped_no_verdict": 0,
+     "dropped_short": 0,
+     "dup_earlier": 0,
+     "dup_within": 400,
+     "license": "Apache-2.0",
+     "new_docs": 3182,
+     "read": 3582,
+     "source": "FakeTrue.Br-hf"
+    },
+    {
+     "dropped_no_verdict": 0,
+     "dropped_short": 0,
+     "dup_earlier": 7199,
+     "dup_within": 1,
+     "license": "none-declared",
+     "new_docs": 0,
+     "read": 7200,
+     "source": "Fake.br-Corpus"
+    },
+    {
+     "dropped_no_verdict": 0,
+     "dropped_short": 1,
+     "dup_earlier": 0,
+     "dup_within": 0,
+     "license": "none-declared",
+     "new_docs": 11902,
+     "read": 11903,
+     "source": "FakeRecogna"
+    },
+    {
+     "dropped_no_verdict": 0,
+     "dropped_short": 0,
+     "dup_earlier": 3182,
+     "dup_within": 400,
+     "license": "none-declared",
+     "new_docs": 0,
+     "read": 3582,
+     "source": "FakeTrue.Br"
+    },
+    {
+     "dropped_no_verdict": 248,
+     "dropped_short": 13,
+     "dup_earlier": 0,
+     "dup_within": 0,
+     "license": "MIT",
+     "new_docs": 1052,
+     "read": 1313,
+     "source": "factck-br"
+    },
+    {
+     "dropped_no_verdict": 0,
+     "dropped_short": 0,
+     "dup_earlier": 2139,
+     "dup_within": 18,
+     "license": "Apache-2.0",
+     "new_docs": 0,
+     "read": 2157,
+     "source": "bilstm-combined"
+    }
+   ],
+   "title": "what each source contributed, in source order"
+  },
+  {
+   "columns": [
+    {
+     "key": "split",
+     "label": "split"
+    },
+    {
+     "fmt": "int",
+     "key": "docs",
+     "label": "docs"
+    },
+    {
+     "fmt": "int",
+     "key": "fake",
+     "label": "fake"
+    },
+    {
+     "fmt": "int",
+     "key": "true",
+     "label": "true"
+    },
+    {
+     "fmt": "int",
+     "key": "label_conflict",
+     "label": "label conflicts"
+    },
+    {
+     "fmt": "int",
+     "key": "split_conflict",
+     "label": "split conflicts"
+    }
+   ],
+   "notes": [
+    "corpus_hash sha256:12c173b9164b38d9956dbf4689dd3a93f1d9b876b95cc33d9e9b5a38ba76921e, 23335 docs"
+   ],
+   "rows": [
+    {
+     "docs": 19549,
+     "fake": 10325,
+     "label_conflict": 0,
+     "split": "train",
+     "split_conflict": 0,
+     "true": 9224
+    },
+    {
+     "docs": 3786,
+     "fake": 1938,
+     "label_conflict": 0,
+     "split": "test",
+     "split_conflict": 1746,
+     "true": 1848
+    }
+   ],
+   "title": "the corpus"
+  },
+  {
+   "columns": [
+    {
+     "key": "a",
+     "label": "source"
+    },
+    {
+     "key": "b",
+     "label": "source"
+    },
+    {
+     "fmt": "int",
+     "key": "shared",
+     "label": "texts in both"
+    }
+   ],
+   "rows": [
+    {
+     "a": "Fake.br-Corpus",
+     "b": "FakeBr-hf",
+     "shared": 7199
+    },
+    {
+     "a": "FakeTrue.Br",
+     "b": "FakeTrue.Br-hf",
+     "shared": 3182
+    },
+    {
+     "a": "Fake.br-Corpus",
+     "b": "bilstm-combined",
+     "shared": 1471
+    },
+    {
+     "a": "FakeBr-hf",
+     "b": "bilstm-combined",
+     "shared": 1471
+    },
+    {
+     "a": "FakeTrue.Br",
+     "b": "bilstm-combined",
+     "shared": 668
+    },
+    {
+     "a": "FakeTrue.Br-hf",
+     "b": "bilstm-combined",
+     "shared": 668
+    }
+   ],
+   "title": "texts shared between sources"
+  },
+  {
+   "columns": [
+    {
+     "key": "rating",
+     "label": "ratingValue"
+    },
+    {
+     "key": "text",
+     "label": "label from the text rating"
+    },
+    {
+     "key": "scale",
+     "label": "label from the numeric scale"
+    },
+    {
+     "fmt": "int",
+     "key": "n",
+     "label": "claims"
+    }
+   ],
+   "notes": [
+    "469 claims get opposite labels from the two rules, before the length filter. The numeric rule (<=2 fake, 3 dropped, >=4 true) is the one Urna's corpus_next.v1 loader used; this corpus uses the text rating."
+   ],
+   "rows": [
+    {
+     "n": 1,
+     "rating": 0,
+     "scale": "fake",
+     "text": "dropped"
+    },
+    {
+     "n": 474,
+     "rating": 1,
+     "scale": "fake",
+     "text": "fake"
+    },
+    {
+     "n": 25,
+     "rating": 2,
+     "scale": "fake",
+     "text": "dropped"
+    },
+    {
+     "n": 54,
+     "rating": 3,
+     "scale": "dropped",
+     "text": "dropped"
+    },
+    {
+     "n": 104,
+     "rating": 4,
+     "scale": "true",
+     "text": "dropped"
+    },
+    {
+     "n": 469,
+     "rating": 4,
+     "scale": "true",
+     "text": "fake"
+    },
+    {
+     "n": 34,
+     "rating": 4,
+     "scale": "true",
+     "text": "true"
+    },
+    {
+     "n": 14,
+     "rating": 5,
+     "scale": "true",
+     "text": "dropped"
+    },
+    {
+     "n": 6,
+     "rating": 6,
+     "scale": "true",
+     "text": "dropped"
+    },
+    {
+     "n": 1,
+     "rating": 6,
+     "scale": "true",
+     "text": "true"
+    },
+    {
+     "n": 42,
+     "rating": 7,
+     "scale": "true",
+     "text": "dropped"
+    },
+    {
+     "n": 85,
+     "rating": 8,
+     "scale": "true",
+     "text": "true"
+    },
+    {
+     "n": 4,
+     "rating": "-",
+     "scale": "dropped",
+     "text": "dropped"
+    }
+   ],
+   "title": "FACTCK.BR: text rating against the numeric scale"
+  }
+ ],
+ "title": "seven sources, one deduplicated corpus"
+}

@@ -1,0 +1,20 @@
+[project]
+name = "fakenews-ptbr-urna-benchmark"
+version = "0.1.0"
+description = "Retrieval benchmark of seven pt-br fake-news datasets in single-file urna containers"
+requires-python = ">=3.12,<3.14"
+license = "MIT"
+dependencies = [
+    "urna==0.5.1",
+    "numpy>=1.26",
+    "tokenizers>=0.20",
+    "pandas>=2.2",
+    "pyarrow>=17",
+    "huggingface_hub>=0.30",
+    "sentence-transformers>=3.0",
+    "torch>=2.4",
+    "openpyxl>=3.1.5",
+]
+
+[tool.uv]
+package = false

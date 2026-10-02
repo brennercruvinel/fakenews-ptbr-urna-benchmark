@@ -1,0 +1,36 @@
+# Example embedders. None of them is the default: pick one with
+# `build.py --model NAME`, or add your own entry. Each one is a complete,
+# pinned example; the results table compares them on the same queries.
+#
+# kind        sentence-transformers: downloaded at `revision`, loaded from that
+#             snapshot directory, queried in Urna with --model-path
+#             potion: the static table bundled in the urna wheel, no download,
+#             no torch; queried by any Urna install out of the box
+# revision    the hub commit; for potion, the urna wheel version that bundles it
+
+[[model]]
+name = "minilm"
+kind = "sentence-transformers"
+id = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+revision = "e8f8c211226b894fcb81acc59f3b34ba3efd5f42"
+dim = 384
+license = "Apache-2.0"
+note = "multilingual, 118M parameters, reads the first 128 tokens; the model of Urna's corpus_next.v1"
+
+[[model]]
+name = "mpnet"
+kind = "sentence-transformers"
+id = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
+revision = "4328cf26390c98c5e3c738b4460a05b95f4911f5"
+dim = 768
+license = "Apache-2.0"
+note = "multilingual, 278M parameters, reads the first 128 tokens; larger and slower than minilm"
+
+[[model]]
+name = "potion"
+kind = "potion"
+id = "minishlab/potion-base-8M"
+revision = "urna==0.5.1"
+dim = 256
+license = "MIT"
+note = "static English table, offline, no torch; Portuguese rides English subwords, so expect weak recall"
