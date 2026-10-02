@@ -26,7 +26,9 @@ Each one gets pinned to a commit or a Hub revision in `sources/sources.toml`, wi
 
 The overlap between sources is real (FakeRecogna republishes Fake.br articles, FakeTrue.Br shares headlines with FakeBr-hf), so the corpus is deduplicated by the hash of the normalized text. That hash is the `doc_id`, and it is what `qrels` judges.
 
-A `doc_id` is not a citation. Inside a `.urna` file the identity of a chunk is its `chunk_id`, which Urna derives from the canonical text, the `source_uri`, the byte span and the chunker version ([`chunk.rs`](https://github.com/hoffresearch/urna/blob/main/crates/urna-format/src/chunk.rs)). Each release publishes a chunk map (`chunk_id`, `doc_id`, `source_uri`, `byte_start`, `byte_end`, `chunker_version`), and the evaluation converts every hit to its `doc_id` through that map before scoring, keeping the best rank when several chunks of one document are hit. The map is checked against the chunk ids read from each `.urna`.
+A `doc_id` is not a citation. Inside a `.urna` file the identity of a chunk is its `chunk_id`, which Urna derives from the canonical text, the `source_uri`, the byte span and the chunker version ([`chunk.rs`](https://github.com/hoffresearch/urna/blob/main/crates/urna-format/src/chunk.rs)). Each release publishes a chunk map (`chunk_id`, `doc_id`, `source_uri`, `byte_start`, `byte_end`, `chunker_version`), checked against the chunk ids read from each `.urna`.
+
+The evaluation turns chunk hits into a document ranking before scoring. Each hit maps to its `doc_id`, the first hit of a document takes the next document rank and later hits of the same document are dropped, so `A, A, B` becomes `A, B` at ranks 1 and 2. Metrics at k use the first k distinct documents, and a query that returns fewer than k distinct documents is run again with more chunks until it has them. The result is a TREC run scored against `qrels.tsv` (`query_id 0 doc_id relevance`). The details are in `docs/methodology.md`.
 
 Every occurrence of a text is kept in its `origins` list, and two conflicts are recorded explicitly:
 
@@ -68,7 +70,7 @@ Until both land, the build either runs against a checkout of Urna or stays on a 
 ```
 sources/                 sources.toml: url, pinned revision, license, loader per upstream
 profiles/                the build recipes (exact, tiny, hybrid), urna build --spec
-benchmark/queries/       queries.jsonl and qrels.tsv: real claims and judged relevance
+benchmark/queries/       queries.jsonl and qrels.tsv (TREC format): real claims and judged relevance
 benchmark/experiments/   NN-slug/{README.md, results.json, table.md}
 benchmark/tools/         fetch_sources, prepare, overlap_report, export_parquet, evaluate, promote, render_report
 release/v0.1/<profile>/  build lock, stripped manifest, SHA256SUMS, CITATION_KEY
