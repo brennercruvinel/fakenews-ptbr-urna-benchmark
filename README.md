@@ -91,7 +91,7 @@ The corpus, the chunk map, the queries and the qrels as Parquet, and every `.urn
 
 </details>
 
-## Before the first publication
+## Checklist
 
 - [x] Every source in `sources/sources.toml` has a pinned revision, a tree hash and its declared license.
 - [x] The embedder is the user's choice, from pinned examples.

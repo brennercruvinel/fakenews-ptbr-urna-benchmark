@@ -19,7 +19,7 @@ The last three repos carry no license file at their pinned revisions, so the Git
 - a link to the author's grant (an issue, a release note, a page by the authors), or
 - an archived copy of the authors' written permission, committed under `docs/license-evidence/<source>.md` with its date and sender.
 
-Until each of the three has its evidence, `export_parquet.py` refuses to lay out a public dataset; `--private` exports for the private one and lists the gap in `CHECKSUMS.json`.
+The repository and the dataset were made public on 2026-10-02, by the maintainer's decision, with these three pieces of evidence still to be recorded; the dataset's `CHECKSUMS.json` lists the gap (`license_evidence_missing`). `export_parquet.py` keeps refusing a regular export until the evidence is in, so the next export without `--private` is the one that closes it.
 
 Cite each source when you use its rows; the papers are listed below where the upstream names one.
 
