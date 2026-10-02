@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "if you use this benchmark or its artifacts, cite it as below. the citation key of a specific .urna file is its content_hash, read with urna inspect --json."
+message: "If you use this benchmark or its artifacts, cite it as below. The citation key of a specific .urna file is its content_hash, read with urna inspect --json."
 type: dataset
 title: "fakenews-ptbr-urna-benchmark"
 version: 0.0.0
@@ -10,10 +10,10 @@ authors:
     given-names: Brenner
     affiliation: Hoff Research
     email: brenner@hoffresearch.com
-abstract: "seven public brazilian-portuguese fake-news datasets normalized into one deduplicated corpus, packed into single-file .urna containers, and measured on build stability and on retrieval quality against judged real queries."
+abstract: "Seven public Brazilian Portuguese fake-news datasets normalized into one deduplicated corpus, packed into single-file .urna containers, and measured on build stability and on retrieval quality against judged real queries."
 keywords:
   - fake news
-  - brazilian portuguese
+  - Brazilian Portuguese
   - fact checking
   - text retrieval
   - embeddings

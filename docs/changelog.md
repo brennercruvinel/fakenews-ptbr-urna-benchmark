@@ -1,5 +1,5 @@
-# changelog
+# Changelog
 
-## unreleased
+## Unreleased
 
-- scaffold: layout, sources list, readme for review.
+- Scaffold: layout, sources list and README for review.

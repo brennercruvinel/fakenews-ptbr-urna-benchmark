@@ -1,4 +1,4 @@
-# one entry per upstream dataset. revision and license are filled in task 5;
+# One entry per upstream dataset. Revision and license are filled in task 5;
 # fetch_sources.py refuses an entry with an empty revision.
 
 [[source]]
