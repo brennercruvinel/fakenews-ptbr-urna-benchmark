@@ -1,0 +1,51 @@
+{
+ "experiment": "04-clean-install",
+ "provenance": {
+  "date": "2026-10-02",
+  "notes": "fresh git clone, uv sync, empty FAKENEWS_DATA; the minilm snapshot downloaded and the corpus re-embedded from scratch; Apple M4, cpu",
+  "source": "sh benchmark/tools/check_clean.sh WORK potion minilm",
+  "status": "measured"
+ },
+ "tables": [
+  {
+   "columns": [
+    {
+     "key": "check",
+     "label": "check"
+    },
+    {
+     "key": "result",
+     "label": "result"
+    }
+   ],
+   "rows": [
+    {
+     "check": "source tree hashes (7 sources)",
+     "result": "match sources.toml"
+    },
+    {
+     "check": "corpus_hash",
+     "result": "sha256:12c173b9164b38d9956dbf4689dd3a93f1d9b876b95cc33d9e9b5a38ba76921e"
+    },
+    {
+     "check": "queries.jsonl and qrels.tsv",
+     "result": "identical to the tracked files"
+    },
+    {
+     "check": "potion-exact file_hash",
+     "result": "sha256:ab5bf432be08f9ac9d02e2b4d50c262811cc0aaaec5e1ea39aad00107d66e8aa, as in release/v0.1"
+    },
+    {
+     "check": "minilm-exact file_hash",
+     "result": "sha256:21c1edc22e9447a77376945f9be38aacee80ebbefed70479dd3993f6f665836e, as in release/v0.1"
+    },
+    {
+     "check": "urna validate (urna 0.5.1)",
+     "result": "both files pass"
+    }
+   ],
+   "title": "every identity the repo pins, reproduced"
+  }
+ ],
+ "title": "the README from a fresh clone"
+}

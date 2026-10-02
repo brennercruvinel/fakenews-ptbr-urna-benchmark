@@ -34,7 +34,7 @@ uv run python benchmark/tools/build.py --model minilm --preset exact
 uv run python benchmark/tools/evaluate.py candidates/minilm-exact
 ```
 
-`build.py` downloads the model at its pinned revision into `$FAKENEWS_DATA/models/` and writes `candidates/<model>-<preset>/`: the `.urna`, the chunk map, a build lock (corpus and source hashes, the model snapshot's file hashes and `model_hash`, package versions, platform, device, output hashes) and the manifest Urna reads back. A rebuild on the same machine gives the same `file_hash`. `evaluate.py` writes a TREC run under `benchmark/runs/` and its scores.
+`build.py` downloads the model at its pinned revision into `$FAKENEWS_DATA/models/` and writes `candidates/<model>-<preset>/`: the `.urna`, the chunk map, a build lock (corpus and source hashes, the model snapshot's file hashes and `model_hash`, package versions, platform, device, output hashes) and the manifest Urna reads back. A rebuild on the same machine gives the same `file_hash`. `evaluate.py` writes a TREC run under `benchmark/runs/` and its scores. `sh benchmark/tools/check_clean.sh WORK_DIR` runs all of this from a fresh clone and checks every pinned identity ([experiment 04](benchmark/experiments/04-clean-install/)).
 
 ## Query one
 

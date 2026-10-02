@@ -162,3 +162,22 @@ verdict: everything comes back the same on one machine: re-embedding gives bit-i
 | mpnet | hybrid | 1.000 | 1.000 |
 
 provenance: measured; source: benchmark/tools/stability.py; date: 2026-10-02; notes: re-embed sample: the first 1000 documents of the corpus
+
+## 04 clean-install: the README from a fresh clone
+
+hypothesis: the instructions in the README rebuild the same data and the same files on a machine that has only git, uv and the urna cli.
+method: `benchmark/tools/check_clean.sh` clones the repo into an empty directory, runs `uv sync`, fetches the seven sources into an empty FAKENEWS_DATA, prepares the corpus, checks the queries, and builds the potion and minilm `exact` files, comparing each identity with what the repo pins.
+verdict: every identity came back: the seven tree hashes, the corpus_hash, the queries and qrels, and both file_hashes, the minilm one after downloading the model and embedding the corpus from scratch. The installed urna 0.5.1 validated both files. Same machine class as the builds (Apple M4, cpu); another platform may embed to different floats, which the build lock would show.
+
+### every identity the repo pins, reproduced
+
+| check | result |
+| --- | --- |
+| source tree hashes (7 sources) | match sources.toml |
+| corpus_hash | sha256:12c173b9164b38d9956dbf4689dd3a93f1d9b876b95cc33d9e9b5a38ba76921e |
+| queries.jsonl and qrels.tsv | identical to the tracked files |
+| potion-exact file_hash | sha256:ab5bf432be08f9ac9d02e2b4d50c262811cc0aaaec5e1ea39aad00107d66e8aa, as in release/v0.1 |
+| minilm-exact file_hash | sha256:21c1edc22e9447a77376945f9be38aacee80ebbefed70479dd3993f6f665836e, as in release/v0.1 |
+| urna validate (urna 0.5.1) | both files pass |
+
+provenance: measured; source: sh benchmark/tools/check_clean.sh WORK potion minilm; date: 2026-10-02; notes: fresh git clone, uv sync, empty FAKENEWS_DATA; the minilm snapshot downloaded and the corpus re-embedded from scratch; Apple M4, cpu
