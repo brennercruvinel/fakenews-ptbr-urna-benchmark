@@ -10,8 +10,8 @@ Three example embedders, all on the same corpus and the same queries. None is a 
 
 | Model | Dim | nDCG@10 | recall@10 | Embed the corpus (CPU) | Query from an installed Urna |
 |---|---:|---:|---:|---:|---|
-| `mpnet` (paraphrase-multilingual-mpnet-base-v2) | 768 | 0.528 | 0.690 | about 7 min | the release after 0.5.1, `--model-path` |
-| `minilm` (paraphrase-multilingual-MiniLM-L12-v2) | 384 | 0.503 | 0.660 | about 3 min | the release after 0.5.1, `--model-path` |
+| `mpnet` (paraphrase-multilingual-mpnet-base-v2) | 768 | 0.528 | 0.690 | about 7 min | Urna `main` (not in 0.5.1), `--model-path` |
+| `minilm` (paraphrase-multilingual-MiniLM-L12-v2) | 384 | 0.503 | 0.660 | about 3 min | Urna `main` (not in 0.5.1), `--model-path` |
 | `potion` (potion-base-8M, bundled with the wheel) | 256 | 0.326 | 0.399 | seconds | Urna 0.5.1, out of the box |
 
 Numbers are for the `exact` preset on an Apple M4 CPU; the `tiny` and `hybrid` presets of each model are in [RESULTS.md](RESULTS.md). The two multilingual models read the first 128 tokens of each document. Potion is an English static table: Portuguese rides English subwords, and it shows.
@@ -43,7 +43,7 @@ urna retrieve candidates/minilm-exact/fakenews.urna "vacina altera o dna" -k 5 -
   --model-path "$FAKENEWS_DATA/models/minilm-e8f8c211226b"
 ```
 
-The potion file answers any Urna 0.5.1 install. The sentence-transformers files need the query route merged into Urna's `main` in [#264](https://github.com/hoffresearch/urna/pull/264), which ships with the release after 0.5.1: run `urna setup --yes` with that binary (it replaces a 0.5.1 payload and keeps the venv), add `torch` and `sentence-transformers` to Urna's venv, and pass `--model-path` pointing at the pinned snapshot `build.py` downloaded. When something is missing, the query says what and prints the fix: the install line for the interpreter it ran, or the missing weights. The [dataset card](https://huggingface.co/datasets/brennercruvinel/fakenews-ptbr-urna-benchmark) has the full steps. From Python, `urna.open(path).search(vector, k)` takes a vector embedded by the same model.
+The potion file answers any Urna 0.5.1 install. The sentence-transformers files need the query route merged into Urna's `main` in [#264](https://github.com/hoffresearch/urna/pull/264), which is not in the latest release, [0.5.1](https://github.com/hoffresearch/urna/releases/tag/v0.5.1): until the next tag, build the CLI from `main` (checked at `7ef2b725`; a binary built from a checkout reads the query scripts from it, no `urna setup` payload needed), give it a Python with `torch` and `sentence-transformers`, and pass `--model-path` pointing at the snapshot `build.py` downloaded. That snapshot holds only the files the build fingerprinted (`model.snapshot_files` in the build lock). A download of the whole model repo also brings `pytorch_model.bin`, which enters the fingerprint, so the `model_hash` no longer matches and the file refuses the query. When something is missing, the query says what and prints the fix: the install line for the interpreter it ran, or the missing weights. The [dataset card](https://huggingface.co/datasets/brennercruvinel/fakenews-ptbr-urna-benchmark) has the full steps, with the exact `hf download` per model. From Python, `urna.open(path).search(vector, k)` takes a vector embedded by the same model.
 
 ## Documents, chunks and conflicts
 

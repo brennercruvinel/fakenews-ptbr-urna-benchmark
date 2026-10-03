@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Correct the query install for the minilm and mpnet files: they need Urna built from `main` (the route of hoffresearch/urna #264 is not in 0.5.1, the latest release), and the card's `hf download` fetched the whole model repo, whose `pytorch_model.bin` enters the fingerprint and changes the `model_hash`. The card now downloads only the files in `model.snapshot_files` at `model.revision`; checked: both fingerprints equal the locks' `model_hash`, and `retrieve --model-path` answers offline with urna `main` at `7ef2b725`, while the 0.5.1 binary cannot serve them.
 - Scaffold: layout, sources list and README for review.
 - Separate `doc_id` (dedup and `qrels`) from the `chunk_id` Urna cites, with a chunk map per release.
 - Call `exact` the reference for ranking agreement; relevance comes from `qrels`.
