@@ -7,7 +7,7 @@ What the Urna repository holds that depends on the fake-news corpus, as of Urna 
 | Path | Role |
 |---|---|
 | `data/corpus_next.v1.urna` | The corpus, in git lfs. 30,725 chunks, `exact` preset, MiniLM 384d. `file_hash sha256:4229b7b3abfb85ddd75ebf183e0518acf60b8c4c7816c2f1df4c9041ef9b3233`, `content_hash sha256:0ef1cf8f5d682f4614a0c4ea38f093a432c352de3a350362d09fcef2ff05917e`. |
-| `data/measure/fakerecogna_exact.urna` | A FakeRecogna-only corpus kept in lfs for measurements. |
+| `data/measure/fakerecogna_exact.urna` | A FakeRecogna-only corpus kept in lfs for measurements. Nothing read it; Urna 0.5.2 removed it from the tree (it stays in history). |
 | `.gitattributes`, `.gitignore`, `scripts/pre-commit` | Track both files in lfs and allow them past the data-artifact guard. |
 
 ## The build
@@ -50,4 +50,4 @@ The gate needs the file, not the build: it reads `corpus_next.v1.urna` and never
 
 ## The query side
 
-A MiniLM corpus is queried through `python/embed_query.py`. Urna 0.5.1 refuses it from an installed binary. Pull request #264, merged into `main` on 2026-10-02 and not yet released, fixes that: the payload ships `embed_query.py`, `urna setup` replaces an older payload and keeps the venv, the registry gains `minilm-multilingual` with the same fingerprint, and a failed query names its cause and the fix.
+A MiniLM corpus is queried through `python/embed_query.py`. Urna 0.5.1 refuses it from an installed binary. Pull request #264, merged on 2026-10-02 and released in Urna 0.5.3 (0.5.2 reached PyPI only), fixes that: the payload ships `embed_query.py`, `urna setup` replaces an older payload and keeps the venv, the registry gains `minilm-multilingual` with the same fingerprint, and a failed query names its cause and the fix.
