@@ -1,11 +1,11 @@
-cff-version: "1.2.0"
-message: >-
-  If you use Urna in your work, please cite the version you used with the
-  metadata in this file.
-title: Urna
-type: software
-version: "0.5.1"
-date-released: "2026-09-26"
+cff-version: 1.2.0
+message: "If you use this benchmark or its artifacts, cite it as below. A specific .urna file is identified by its file_hash, listed in release/v0.1/<build>/SHA256SUMS; the corpus every v0.1 build holds is identified by its corpus_hash. Cite Urna, the engine that builds and reads the files, as listed under references. The seven source datasets keep their own licenses and authors, listed per source in docs/sources.md; the MIT license of this repo covers the code and results, not the corpus text."
+type: dataset
+title: "fakenews-ptbr-urna-benchmark"
+version: 0.1.0
+date-released: 2026-10-02
+repository-code: "https://github.com/brennercruvinel/fakenews-ptbr-urna-benchmark"
+url: "https://huggingface.co/datasets/brennercruvinel/fakenews-ptbr-urna-benchmark"
 authors:
   - given-names: Brenner
     family-names: Cruvinel
@@ -13,27 +13,29 @@ authors:
     orcid: https://orcid.org/0009-0002-3079-8829
     affiliation: Hoff Research
     website: https://brennercruvinel.dev
-abstract: >-
-  Urna is an offline-first vector database that stores text chunks, embeddings,
-  source spans, indices, and a search contract in a single .urna file. Python
-  tooling builds the file, and a Rust runtime searches it using memory mapping
-  and hash verification. Search results include cosine scores and
-  content-addressable citations that resolve to stored text and source spans.
-  Builds are reproducible for the same inputs and configuration.
-license: MIT
-url: https://urna.dev
-repository-code: https://github.com/hoffresearch/urna
-repository-artifact: https://crates.io/crates/urna/0.5.1
-identifiers:
-  - type: url
-    value: https://github.com/hoffresearch/urna/releases/tag/v0.5.1
-    description: Release of Urna version 0.5.1.
+abstract: "Retrieval benchmark of seven public Brazilian Portuguese fake-news datasets, deduplicated into one corpus of 23,335 documents and packed into single-file .urna containers, with 2,601 queries and silver relevance judgments. Every source is pinned to a revision and a tree hash; three example embedders (mpnet, minilm, potion) at three presets (exact, tiny, hybrid) are scored on nDCG@10 and recall@k, with rank stability and a clean-install check."
 keywords:
-  - vector database
+  - fake news
+  - brazilian portuguese
+  - information retrieval
+  - relevance judgments
   - embeddings
-  - semantic search
-  - offline
-  - citations
-  - retrieval
-  - rust
-  - python
+  - vector database
+  - single-file container
+  - reproducibility
+identifiers:
+  - type: other
+    value: "sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a"
+    description: "corpus_hash of the 23,335-document corpus every v0.1 build holds"
+references:
+  - type: software
+    title: "Urna"
+    abstract: "Offline-first vector database that stores text chunks, embeddings, source spans, indices and a search contract in a single .urna file. The v0.1 files were built with urna 0.5.1 (environment.packages.urna in each build.lock.json)."
+    authors:
+      - given-names: Brenner
+        family-names: Cruvinel
+        orcid: https://orcid.org/0009-0002-3079-8829
+        affiliation: Hoff Research
+    repository-code: "https://github.com/hoffresearch/urna"
+    url: "https://urna.dev"
+    license: MIT
