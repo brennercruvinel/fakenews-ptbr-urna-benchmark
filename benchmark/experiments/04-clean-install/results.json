@@ -2,8 +2,8 @@
  "corpus_hash": "sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a",
  "experiment": "04-clean-install",
  "provenance": {
-  "date": "2026-10-02",
-  "notes": "commit 1bc33d5918e78aa6fd7487f53cf723343dd763a3; fresh clone, uv sync, empty FAKENEWS_DATA; Darwin arm64, cpu",
+  "date": "2026-10-05",
+  "notes": "commit 3ca030dd335e476aad1ac57a624e2b4a709d4aa3; fresh clone, uv sync, empty FAKENEWS_DATA; Darwin arm64, cpu",
   "source": "benchmark/tools/check_clean.sh, recorded by record_clean.py",
   "status": "measured"
  },
@@ -38,7 +38,7 @@
     },
     {
      "check": "potion-exact urna validate",
-     "value": "urna 0.5.1"
+     "value": "urna 0.5.4"
     },
     {
      "check": "minilm-exact file_hash",
@@ -46,7 +46,7 @@
     },
     {
      "check": "minilm-exact urna validate",
-     "value": "urna 0.5.1"
+     "value": "urna 0.5.4"
     }
    ],
    "title": "every identity the repo pins, reproduced"

@@ -177,8 +177,8 @@ verdict: on commit 1bc33d5, every identity came back: the seven tree hashes, cor
 | corpus_hash | sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a |
 | queries and qrels | match the tracked files |
 | potion-exact file_hash | sha256:b044723b17b706023cda8575d13d22e978ba2e1b518e97ab579aba77aac830be |
-| potion-exact urna validate | urna 0.5.1 |
+| potion-exact urna validate | urna 0.5.4 |
 | minilm-exact file_hash | sha256:4bcb8e0fc38a1c13f9459ed8b1553cc7c5261c85bbb515235c4fe87e34d04cff |
-| minilm-exact urna validate | urna 0.5.1 |
+| minilm-exact urna validate | urna 0.5.4 |
 
-provenance: measured; source: benchmark/tools/check_clean.sh, recorded by record_clean.py; date: 2026-10-02; notes: commit 1bc33d5918e78aa6fd7487f53cf723343dd763a3; fresh clone, uv sync, empty FAKENEWS_DATA; Darwin arm64, cpu
+provenance: measured; source: benchmark/tools/check_clean.sh, recorded by record_clean.py; date: 2026-10-05; notes: commit 3ca030dd335e476aad1ac57a624e2b4a709d4aa3; fresh clone, uv sync, empty FAKENEWS_DATA; Darwin arm64, cpu
