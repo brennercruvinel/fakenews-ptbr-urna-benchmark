@@ -171,7 +171,7 @@ requires-dist = [
     { name = "sentence-transformers", specifier = ">=3.0" },
     { name = "tokenizers", specifier = ">=0.20" },
     { name = "torch", specifier = ">=2.4" },
-    { name = "urna", specifier = "==0.5.1" },
+    { name = "urna", specifier = "==0.5.4" },
 ]
 
 [[package]]
@@ -1030,11 +1030,11 @@ wheels = [
 
 [[package]]
 name = "urna"
-version = "0.5.1"
+version = "0.5.4"
 source = { registry = "https://pypi.org/simple" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/41/7e/3594c6d6173b581a7dac6fd9120257f2451b80f3df6fb96591382cff46c9/urna-0.5.1-cp312-abi3-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl", hash = "sha256:797ee345939fe5e2e6a55b77beccbde3ae654fe7decbe94111fba27dc1f82a25", size = 30049897, upload-time = "2026-09-27T00:50:06.369Z" },
-    { url = "https://files.pythonhosted.org/packages/5e/41/6cf5d085a7b084d5b6077a320c8c5c2e23bdbe304e0bf7d8ec4f812b272a/urna-0.5.1-cp312-abi3-manylinux_2_34_aarch64.whl", hash = "sha256:0879f75a5be2d0d3f778abcb041927f87ae2f88bc4ba3bd1b56d815c17953e11", size = 29321958, upload-time = "2026-09-27T00:50:09.615Z" },
-    { url = "https://files.pythonhosted.org/packages/57/be/6a5dfd00fc60a8d94b366d27ba2e802c4bccc1a798812e7ff7de55c19014/urna-0.5.1-cp312-abi3-manylinux_2_34_x86_64.whl", hash = "sha256:9819eb420648a4d30eeabde15d71f46543b0a4f42f618d2e10829b8f2235b99a", size = 29353284, upload-time = "2026-09-27T00:50:13.353Z" },
-    { url = "https://files.pythonhosted.org/packages/83/48/89ae6b94724367214dab7a6b516b3d0ed207e0b9c230d9afc1f6c73aea68/urna-0.5.1-cp312-abi3-win_amd64.whl", hash = "sha256:91e5069a755e44cb08acf3c37db8bd0981160892d38f2ef1f1fee2205bb78d7c", size = 29050038, upload-time = "2026-09-27T00:50:16.686Z" },
+    { url = "https://files.pythonhosted.org/packages/5d/c8/8e7c58af23bc996ff69811cc515c108572a0d23cea34e632638f892064f5/urna-0.5.4-cp312-abi3-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl", hash = "sha256:1cd014957aeaa773d4c51581851c6830e2a2b5bbf6932a3b0e1a75e3ee9757ec", size = 30053424, upload-time = "2026-10-05T02:32:34.522Z" },
+    { url = "https://files.pythonhosted.org/packages/37/33/5a4dd14048949d7bf2da0a2878d3422f6b3ba2f1844a48a5e658d78f48f8/urna-0.5.4-cp312-abi3-manylinux_2_34_aarch64.whl", hash = "sha256:ef03b71265834b7367ec297fadc4db6dfd25546a375782f9a2f25d90780800eb", size = 29327091, upload-time = "2026-10-05T02:32:38.338Z" },
+    { url = "https://files.pythonhosted.org/packages/59/d2/eab0adafa7d2300a965a44f599b82303bce9330b67c0fdab18666f622fbb/urna-0.5.4-cp312-abi3-manylinux_2_34_x86_64.whl", hash = "sha256:fdcebe4b8a367383627a9d9876247fb77dcc86a239c2aad2e687d8906a29517a", size = 29358471, upload-time = "2026-10-05T02:32:42.274Z" },
+    { url = "https://files.pythonhosted.org/packages/3a/f3/fac9942ae6ee7f0cb96d83576ffbff63445b400cb8052477fb1f46bc3b17/urna-0.5.4-cp312-abi3-win_amd64.whl", hash = "sha256:d834ce9eb1b4fed063741e97d70754d58766d99418be06a88ba58cae875c79cd", size = 29053870, upload-time = "2026-10-05T02:32:46.643Z" },
 ]

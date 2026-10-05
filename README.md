@@ -1,4 +1,4 @@
-[![urna: offline-first vector database, rust and python](https://raw.githubusercontent.com/hoffresearch/urna/main/assets/images/urna-hoff-research-db-thumb.png)](https://docs.urna.dev/)
+[![urna: offline-first vector database, rust and python](https://raw.githubusercontent.com/hoffresearch/urna/v0.5.4/assets/image/urna-hoff-research-db-iage-thumb-git.png)](https://docs.urna.dev/)
 
 Seven public Brazilian Portuguese fake-news datasets, deduplicated into one corpus of 23,335 documents and packed into single `.urna` files, with 2,601 queries and the relevance judgments that say how well search over them works.
 
@@ -16,7 +16,7 @@ Three example embedders, all on the same corpus and the same queries. None is a 
 | Model | Dim | nDCG@10 | recall@10 | Embed the corpus (CPU) | Query from an installed Urna |
 |---|---:|---:|---:|---:|---|
 | `mpnet` (paraphrase-multilingual-mpnet-base-v2) | 768 | 0.528 | 0.690 | about 7 min | Urna 0.5.3 or later, `--model-path` |
-| `minilm` (paraphrase-multilingual-MiniLM-L12-v2) | 384 | 0.503 | 0.660 | about 3 min | Urna 0.5.3 or later, `--model-path` |
+| `minilm` (paraphrase-multilingual-MiniLM-L12-v2) | 384 | 0.503 | 0.659 | about 3 min | Urna 0.5.3 or later, `--model-path` |
 | `potion` (potion-base-8M, bundled with the wheel) | 256 | 0.326 | 0.399 | seconds | Urna 0.5.1 or later, out of the box |
 
 Numbers are for the `exact` preset on an Apple M4 CPU; the `tiny` and `hybrid` presets of each model are in [RESULTS.md](RESULTS.md). The two multilingual models read the first 128 tokens of each document. Potion is an English static table: Portuguese rides English subwords, and it shows.
@@ -86,7 +86,7 @@ The script clones this repo into an empty directory, follows the README with a f
 
 The overlap between sources is large: 10,381 documents appear in more than one source (FakeBr-hf and Fake.br-Corpus share 7,199, FakeTrue.Br and its vzani copy 3,182). The corpus is deduplicated by the SHA-256 of the normalized text, and that hash is the `doc_id`, the unit `qrels` judges.
 
-A `doc_id` is not a citation. Inside a `.urna` file the identity of a chunk is its `chunk_id`, which Urna derives from the canonical text, the `source_uri`, the byte span and the chunker version ([`chunk.rs`](https://github.com/hoffresearch/urna/blob/main/crates/urna-format/src/chunk.rs)). Each build writes a chunk map (`chunk_id`, `doc_id`, `source_uri`, `byte_start`, `byte_end`, `chunker_version`), and both `build.py` and `evaluate.py` refuse a file whose chunk ids differ from it. Here one chunk is one whole document, so the map is the same for every model and preset.
+A `doc_id` is not a citation. Inside a `.urna` file the identity of a chunk is its `chunk_id`, which Urna derives from the canonical text, the `source_uri`, the byte span and the chunker version ([`chunk.rs`](https://github.com/hoffresearch/urna/blob/v0.5.4/crates/format/src/chunk.rs)). Each build writes a chunk map (`chunk_id`, `doc_id`, `source_uri`, `byte_start`, `byte_end`, `chunker_version`), and both `build.py` and `evaluate.py` refuse a file whose chunk ids differ from it. Here one chunk is one whole document, so the map is the same for every model and preset.
 
 The evaluation turns chunk hits into a document ranking before scoring. Each hit maps to its `doc_id`, the first hit of a document takes the next document rank and later hits of the same document are dropped, so `A, A, B` becomes `A, B` at ranks 1 and 2. Metrics at k use the first k distinct documents, and a query that returns fewer than k distinct documents is run again with more chunks. The result is a TREC run scored against `qrels.tsv` (`query_id 0 doc_id relevance`); `ir_measures` gives the same numbers.
 

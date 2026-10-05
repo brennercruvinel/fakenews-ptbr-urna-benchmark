@@ -6,9 +6,10 @@
 Each argument is a build directory (fakenews.urna, chunk_map.parquet, build.lock.json).
 For each one:
   1. the chunk ids read from the file must equal the chunk map, in order
-  2. every query is embedded with the build's model and searched the way the urna
-     cli routes it: exact, hnsw (`search_ann`) or hybrid (`search_hybrid` with the
-     query text), with the cli's default beam of max(100, k)
+  2. every query is embedded with the build's model and searched the way urna
+     0.5.3 and later route it: exact, hnsw (`search_ann`) or hybrid (`search_hybrid`
+     with the query text), with ef max(100, k), which the file's floor of 400 (its
+     ef_construction) widens to 400
   3. chunk hits become a document ranking: the first hit of a document takes the
      next rank, later hits of it are dropped; a query with fewer than DEPTH
      distinct documents is run again with twice the chunks, up to the corpus size

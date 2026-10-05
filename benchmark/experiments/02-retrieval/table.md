@@ -47,4 +47,4 @@
 | potion | tiny | 0.337 | 0.409 | 0.496 | 0.265 |
 | potion | hybrid | 0.342 | 0.418 | 0.517 | 0.267 |
 
-provenance: measured; source: benchmark/tools/evaluate.py runs, scored against benchmark/queries/qrels.tsv; date: 2026-10-02; notes: corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; silver qrels, every number is a lower bound shared by all rows (docs/methodology.md)
+provenance: measured; source: benchmark/tools/evaluate.py runs, scored against benchmark/queries/qrels.tsv; date: 2026-10-02; notes: urna 0.5.1 (the wheel uv.lock pinned); corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; silver qrels, every number is a lower bound shared by all rows (docs/methodology.md)

@@ -35,4 +35,4 @@
 | potion | tiny | 0.930 | 0.933 |
 | potion | hybrid | 0.976 | 0.990 |
 
-provenance: measured; source: benchmark/tools/stability.py; date: 2026-10-02; notes: corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; re-embed sample: the first 1000 documents
+provenance: measured; source: benchmark/tools/stability.py; date: 2026-10-02; notes: urna 0.5.1 (the wheel uv.lock pinned); corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; re-embed sample: the first 1000 documents
