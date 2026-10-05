@@ -5,7 +5,7 @@ description = "Retrieval benchmark of seven pt-br fake-news datasets in single-f
 requires-python = ">=3.12,<3.14"
 license = "MIT"
 dependencies = [
-    "urna==0.5.1",
+    "urna==0.5.4",
     "numpy>=1.26",
     "tokenizers>=0.20",
     "pandas>=2.2",

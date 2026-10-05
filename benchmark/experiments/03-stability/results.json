@@ -3,7 +3,7 @@
  "experiment": "03-stability",
  "provenance": {
   "date": "2026-10-02",
-  "notes": "corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; re-embed sample: the first 1000 documents",
+  "notes": "urna 0.5.1 (the wheel uv.lock pinned); corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; re-embed sample: the first 1000 documents",
   "source": "benchmark/tools/stability.py",
   "status": "measured"
  },

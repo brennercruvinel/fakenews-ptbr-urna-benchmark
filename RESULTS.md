@@ -72,7 +72,7 @@ provenance: measured; source: benchmark/tools/overlap_report.py over prepare.py 
 ## 02 retrieval: retrieval quality per model and preset
 
 hypothesis: a multilingual sentence-transformers model finds the judged documents far more often than potion, an English static table, and the compressed presets of a model lose little against its exact preset.
-method: the 2,601 queries of benchmark/queries, embedded by each build's own model, searched the way the urna cli routes them (exact, hnsw, or hybrid with the query text, beam max(100, k)); chunk hits become a document ranking (first hit per document), scored as a TREC run against the silver qrels; ir_measures reproduces the numbers.
+method: the 2,601 queries of benchmark/queries, embedded by each build's own model, searched the way urna 0.5.3 and later route them (exact, hnsw, or hybrid with the query text; ef max(100, k), which the file's floor of 400, its ef_construction, widens to 400); chunk hits become a document ranking (first hit per document), scored as a TREC run against the silver qrels; ir_measures reproduces the numbers.
 verdict: mpnet leads (nDCG@10 0.528), minilm is close behind at half the dimension and less than half the embed time (0.503), potion trails far behind (0.326). tiny keeps every multilingual number within 0.001 of exact at about a quarter of the bytes; on potion it loses 0.013 nDCG@10 and 0.035 recall@100. hybrid lands within 0.001 of exact for the multilingual models and 0.004 above it on potion's recall@100: urna ranks a candidate pool (hnsw plus bm25) by exact cosine, so its top-1 is the brute-force top-1 on every multilingual query and on 99% of potion's (experiment 03), and bm25 mostly swaps documents into the tail.
 
 ### all 2601 queries
@@ -120,7 +120,7 @@ verdict: mpnet leads (nDCG@10 0.528), minilm is close behind at half the dimensi
 | potion | tiny | 0.337 | 0.409 | 0.496 | 0.265 |
 | potion | hybrid | 0.342 | 0.418 | 0.517 | 0.267 |
 
-provenance: measured; source: benchmark/tools/evaluate.py runs, scored against benchmark/queries/qrels.tsv; date: 2026-10-02; notes: corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; silver qrels, every number is a lower bound shared by all rows (docs/methodology.md)
+provenance: measured; source: benchmark/tools/evaluate.py runs, scored against benchmark/queries/qrels.tsv; date: 2026-10-02; notes: urna 0.5.1 (the wheel uv.lock pinned); corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; silver qrels, every number is a lower bound shared by all rows (docs/methodology.md)
 
 ## 03 stability: re-embedding, rebuilding, and agreement with exact
 
@@ -161,7 +161,7 @@ verdict: everything comes back the same on one machine: re-embedding gives bit-i
 | potion | tiny | 0.930 | 0.933 |
 | potion | hybrid | 0.976 | 0.990 |
 
-provenance: measured; source: benchmark/tools/stability.py; date: 2026-10-02; notes: corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; re-embed sample: the first 1000 documents
+provenance: measured; source: benchmark/tools/stability.py; date: 2026-10-02; notes: urna 0.5.1 (the wheel uv.lock pinned); corpus sha256:e884b982900332aa331dc43653e6012396ed677bda9189515cc40a751393cb2a; re-embed sample: the first 1000 documents
 
 ## 04 clean-install: the README from a fresh clone
 

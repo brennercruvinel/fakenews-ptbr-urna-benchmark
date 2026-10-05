@@ -6,7 +6,9 @@
 #             snapshot directory, queried in Urna with --model-path
 #             potion: the static table bundled in the urna wheel, no download,
 #             no torch; queried by any Urna install out of the box
-# revision    the hub commit; for potion, the urna wheel version that bundles it
+# revision    the hub commit; for potion, the urna wheel version the v0.1 builds
+#             used; the table it bundles is byte-identical through 0.5.4
+#             (model.safetensors sha256 f65d0f32, same model_hash)
 
 [[model]]
 name = "minilm"
