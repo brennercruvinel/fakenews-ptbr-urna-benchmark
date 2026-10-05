@@ -48,7 +48,8 @@ uv run python benchmark/tools/evaluate.py candidates/minilm-exact
 ## Check a release from the hub
 
 ```sh
-hf download brennercruvinel/fakenews-ptbr-urna-benchmark --repo-type dataset --include "release/v0.1/minilm-exact/*" --local-dir .
+hf download brennercruvinel/fakenews-ptbr-urna-benchmark --repo-type dataset --include "release/v0.1/minilm-exact/*" \
+  --revision f3ddaef1166f81f94dd21960c239682d7ffdac6f --local-dir .
 ```
 
 ```sh
