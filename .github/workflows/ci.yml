@@ -2,6 +2,7 @@ name: ci
 
 on:
   push:
+    branches: [main]
   pull_request:
 
 jobs:
@@ -14,17 +15,25 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: install ruff
-        run: pip install ruff
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
+
+      - name: uv.lock matches pyproject.toml
+        # no uv sync: the locked env carries torch, and no check below needs it
+        run: uv lock --check
 
       - name: lint the bench tools
-        run: ruff check benchmark/tools
+        run: uvx ruff check benchmark
+
+      - name: tracked release sidecars match their SHA256SUMS
+        # the .urna and the chunk map are on the hub; the build lock and the
+        # manifest are tracked here and must be the bytes the sums name
+        run: |
+          for d in release/v0.1/*/; do
+            (cd "$d" && sha256sum --ignore-missing -c SHA256SUMS) || exit 1
+          done
 
       - name: rendered report is up to date
-        run: |
-          if [ -f benchmark/tools/render_report.py ]; then
-            python benchmark/tools/render_report.py --check
-          fi
+        run: python benchmark/tools/render_report.py --check
 
       - name: no tracked file names a machine
         run: |
